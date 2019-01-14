@@ -38,7 +38,7 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
        
 
         vk_get_api.messages.send( 
-            peer_id=35109961, 
+            peer_id=, 
             message=str(self.textEdit.toPlainText()), 
             random_id = rand_id
         )
