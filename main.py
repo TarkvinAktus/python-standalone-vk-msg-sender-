@@ -37,6 +37,7 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
         vk_get_api = vk.get_api() 
 
         allConversations = vk_get_api.messages.getConversations()
+       
 
         #API has limit for requests equals to 20 
         #so we calculate num of iterations and check all dialogs what we need 
