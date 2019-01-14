@@ -12,8 +12,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>587</width>
-    <height>202</height>
+    <width>400</width>
+    <height>280</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -38,14 +38,14 @@
    <bool>false</bool>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Message sender</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>120</y>
+      <x>50</x>
+      <y>200</y>
       <width>300</width>
       <height>40</height>
      </rect>
@@ -59,8 +59,8 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>300</width>
-      <height>100</height>
+      <width>380</width>
+      <height>180</height>
      </rect>
     </property>
    </widget>
@@ -70,7 +70,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>587</width>
+     <width>400</width>
      <height>21</height>
     </rect>
    </property>

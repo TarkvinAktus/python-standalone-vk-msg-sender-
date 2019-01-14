@@ -21,13 +21,13 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
 
         self.setupUi(self)  # Это нужно для инициализации нашего дизайна
 
-        #self.pushButton.clicked.connect(self.sendMsg)
+        self.pushButton.clicked.connect(self.sendMsg)
 
-        self.pushButton.clicked.connect(self.on_pushButton_clicked)
-        self.dialog = Second(self)
+        #self.pushButton.clicked.connect(self.on_pushButton_clicked)
+        #self.dialog = Second(self)
 
-    def on_pushButton_clicked(self):
-        self.dialog.show()
+    #def on_pushButton_clicked(self):
+       # self.dialog.show()
     
     def sendMsg(self): 
         rand_id = 0
@@ -35,9 +35,11 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
         vk.auth() 
         vk_get_api = vk.get_api() 
 
+       
+
         vk_get_api.messages.send( 
-            peer_id=, 
-            message='', 
+            peer_id=35109961, 
+            message=str(self.textEdit.toPlainText()), 
             random_id = rand_id
         )
 
