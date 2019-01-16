@@ -1,4 +1,3 @@
-#
 import sys  # sys нужен для передачи argv в QApplication
 from PyQt5 import QtWidgets
 import design  # Это наш конвертированный файл дизайна
@@ -6,35 +5,66 @@ import vk_api
 import random
 import time
 
-class Second(QtWidgets.QMainWindow, design.Ui_MainWindow):
+class Login(QtWidgets.QMainWindow, design.Ui_Login):
 
     def __init__(self, parent=None):
-        super(Second, self).__init__(parent)
+        super(Login, self).__init__(parent)
         self.setupUi(self)
+
+        self.pushButton.clicked.connect(self.chkLogin)
+
+    def chkLogin(self):
+        email = str(self.lineEdit.text())
+        password = str(self.lineEdit_2.text())
+
+        try:
+            vk = vk_api.VkApi(login = email, password = password) 
+            vk.auth()
+
+            self.mainform = Main(vk)
+            self.mainform.show()
+            self.hide()
+        except:
+            print("auth error")
         
+     
 
 class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
     
-    def __init__(self, parent=None):
+    def __init__(self, vk, parent=None):
         # Это здесь нужно для доступа к переменным, методам
         # и т.д. в файле design.py
         super(Main,self).__init__(parent)
 
+        self.vk = vk
+ 
         self.setupUi(self)  # Это нужно для инициализации нашего дизайна
 
-        self.pushButton.clicked.connect(self.sendMsg)
+        self.pushButton.clicked.connect(self.sendMsgtest)
 
         #self.pushButton.clicked.connect(self.on_pushButton_clicked)
         #self.dialog = Second(self)
 
     #def on_pushButton_clicked(self):
        # self.dialog.show()
+
+    def sendMsgtest(self): 
+
+        rand_id = 0
+
+        vk_get_api = self.vk.get_api() 
+
+        vk_get_api.messages.send(
+            random_id=rand_id,
+            user_id=35109961,
+            message=str(self.textEdit.toPlainText())
+            )
+        rand_id = rand_id + 1
     
     def sendMsg(self): 
         rand_id = 0
-        vk = vk_api.VkApi(login = '', password = '') 
-        vk.auth() 
-        vk_get_api = vk.get_api() 
+        
+        vk_get_api = self.vk.get_api() 
 
         allConversations = vk_get_api.messages.getConversations()
        
@@ -75,7 +105,7 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
                         #if msg is not send we wait for 1 second and try again
                         while msgForce==1:
                             try:
-                                #vk_get_api.messages.send(random_id=rand_id,peer_id=id,message=text, random_id = randIdForMsg)
+                                #vk_get_api.messages.send(random_id=rand_id,peer_id=id,message=text)
                                 #rand_id = rand_id + 1
                                 msgForce = 0
                                 randIdForMsg = randIdForMsg + 1
@@ -108,7 +138,7 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
 
 def main():
     app = QtWidgets.QApplication(sys.argv)  # Новый экземпляр QApplication
-    window = Main()  # Создаём объект класса Main
+    window = Login()  # Создаём объект класса Login
     window.show()  # Показываем окно
     app.exec_()  # и запускаем приложение
 
