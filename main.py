@@ -40,7 +40,7 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
  
         self.setupUi(self)  # Это нужно для инициализации нашего дизайна
 
-        self.pushButton.clicked.connect(self.sendMsgtest)
+        self.pushButton.clicked.connect(self.sendMsg)
 
         #self.pushButton.clicked.connect(self.on_pushButton_clicked)
         #self.dialog = Second(self)
@@ -97,6 +97,7 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
             while i < 20:
                 try:
                     if allConversations["items"][i]["conversation"]["peer"]["type"]=="chat" and allConversations["items"][i]["conversation"]["chat_settings"]["title"][0]!="Э":
+                        self.listWidget.addItem(str(allConversations["items"][i]["conversation"]["chat_settings"]["title"]))
                         print(allConversations["items"][i]["conversation"]["chat_settings"]["title"], end = " --- ")        
                         print(allConversations["items"][i]["conversation"]["peer"]["local_id"])
                         #time.sleep(1)
@@ -124,6 +125,7 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
             myOffset = myOffset + 20
             j = j + 1
             
+        self.listWidget.addItem("Найдено "+str(counter))    
         print("Найдено "+str(counter))
 
 
