@@ -13,20 +13,26 @@ class Login(QtWidgets.QMainWindow, design.Ui_Login):
 
         self.pushButton.clicked.connect(self.chkLogin)
         self.closeButton.clicked.connect(self.close)
+    
 
     def chkLogin(self):
         email = str(self.lineEdit.text())
         password = str(self.lineEdit_2.text())
 
+        #self.setFocusPolicy(QtCore.Qt.NoFocus)
+        QtWidgets.QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
+        time.sleep(2)
         try:
             vk = vk_api.VkApi(login = email, password = password) 
             vk.auth()
 
             self.mainform = Main(vk)
+            self.mainform.setWindowFlags(QtCore.Qt.FramelessWindowHint)
             self.mainform.show()
             self.hide()
         except:
             print("auth error")
+        QtWidgets.QApplication.restoreOverrideCursor()
         
      
 
@@ -41,7 +47,13 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
  
         self.setupUi(self)  # Это нужно для инициализации нашего дизайна
 
-        self.pushButton.clicked.connect(self.sendMsg)
+        self.sendButton.clicked.connect(self.sendMsg)
+        self.closeButton.clicked.connect(self.close)
+        self.listWidget.itemDoubleClicked.connect(self.add)  
+
+    def add(self):
+        add = self.listWidget.currentItem()
+        self.listWidget_2.addItem(add)
 
         #self.pushButton.clicked.connect(self.on_pushButton_clicked)
         #self.dialog = Second(self)

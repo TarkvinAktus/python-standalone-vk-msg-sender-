@@ -43,11 +43,11 @@
    <string notr="true"/>
   </property>
   <property name="autoFillBackground">
-   <bool>true</bool>
+   <bool>false</bool>
   </property>
   <property name="styleSheet">
-   <string notr="true">QDialog{
-	background-color:#676DD7	
+   <string notr="true">QWidget{
+	background-color:#d7ecf4
 }</string>
   </property>
   <property name="sizeGripEnabled">
@@ -80,9 +80,9 @@
       <colorrole role="Button">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>53</red>
-         <green>59</green>
-         <blue>174</blue>
+         <red>93</red>
+         <green>151</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
@@ -116,18 +116,18 @@
       <colorrole role="Base">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>53</red>
-         <green>59</green>
-         <blue>174</blue>
+         <red>93</red>
+         <green>151</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
       <colorrole role="Window">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>53</red>
-         <green>59</green>
-         <blue>174</blue>
+         <red>93</red>
+         <green>151</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
@@ -145,9 +145,9 @@
       <colorrole role="Button">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>53</red>
-         <green>59</green>
-         <blue>174</blue>
+         <red>93</red>
+         <green>151</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
@@ -181,18 +181,18 @@
       <colorrole role="Base">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>53</red>
-         <green>59</green>
-         <blue>174</blue>
+         <red>93</red>
+         <green>151</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
       <colorrole role="Window">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>53</red>
-         <green>59</green>
-         <blue>174</blue>
+         <red>93</red>
+         <green>151</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
@@ -210,9 +210,9 @@
       <colorrole role="Button">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>53</red>
-         <green>59</green>
-         <blue>174</blue>
+         <red>93</red>
+         <green>151</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
@@ -246,18 +246,18 @@
       <colorrole role="Base">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>53</red>
-         <green>59</green>
-         <blue>174</blue>
+         <red>93</red>
+         <green>151</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
       <colorrole role="Window">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>53</red>
-         <green>59</green>
-         <blue>174</blue>
+         <red>93</red>
+         <green>151</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
@@ -284,17 +284,22 @@
    <property name="styleSheet">
     <string notr="true">QPushButton{
 	color:white;
-	background-color:#353BAE;	
+	background-color:#5d9700;
+	border:none;	
 }
 QPushButton:hover{
-	background-color:#3e44b7;	
-}</string>
+	background-color:#436d00;	
+}
+QPushButton:focus{outline: none;}</string>
    </property>
    <property name="text">
     <string>Войти</string>
    </property>
    <property name="autoDefault">
     <bool>false</bool>
+   </property>
+   <property name="default">
+    <bool>true</bool>
    </property>
    <property name="flat">
     <bool>false</bool>
@@ -318,6 +323,7 @@ QPushButton:hover{
    <property name="styleSheet">
     <string notr="true">QLineEdit{
 	border:none;
+	background-color:white;
 }</string>
    </property>
    <property name="alignment">
@@ -341,7 +347,8 @@ QPushButton:hover{
    </property>
    <property name="styleSheet">
     <string notr="true">QLineEdit{
-	border:none
+	border:none;
+	background-color:white;
 }</string>
    </property>
    <property name="inputMethodHints">
@@ -372,7 +379,7 @@ QPushButton:hover{
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">QWidget{color:white;}</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>логин</string>
@@ -405,7 +412,7 @@ QPushButton:hover{
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">QWidget{color:white;}</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>пароль</string>
@@ -440,12 +447,13 @@ QPushButton:hover{
    <property name="styleSheet">
     <string notr="true">QPushButton {	
 padding-bottom: 0.4em;
-background-color:#3F45B0;
-color:white
+background-color:#d2374a;
+color:white;
+border:none;	
 }
 QPushButton:hover {
 padding-bottom: 0.4em;
-background-color:#3F4283;
+background-color:#b22e3e;
 }</string>
    </property>
    <property name="text">

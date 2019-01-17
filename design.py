@@ -13,7 +13,7 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setWindowModality(QtCore.Qt.NonModal)
         MainWindow.setEnabled(True)
-        MainWindow.resize(600, 480)
+        MainWindow.resize(930, 441)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -22,33 +22,97 @@ class Ui_MainWindow(object):
         MainWindow.setMinimumSize(QtCore.QSize(0, 0))
         MainWindow.setMaximumSize(QtCore.QSize(1000, 1000))
         MainWindow.setAcceptDrops(False)
+        MainWindow.setStyleSheet("QWidget{\n"
+"    background-color:#d7ecf4\n"
+"}")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(10, 400, 580, 40))
+        self.sendButton = QtWidgets.QPushButton(self.centralwidget)
+        self.sendButton.setGeometry(QtCore.QRect(600, 160, 320, 40))
         font = QtGui.QFont()
         font.setFamily("Verdana")
         font.setPointSize(12)
-        self.pushButton.setFont(font)
-        self.pushButton.setAutoDefault(False)
-        self.pushButton.setObjectName("pushButton")
+        self.sendButton.setFont(font)
+        self.sendButton.setStyleSheet("QPushButton{\n"
+"    color:white;\n"
+"    background-color:#5d9700;    \n"
+"}\n"
+"QPushButton:hover{\n"
+"    background-color:#436d00;    \n"
+"}\n"
+"QPushButton:focus{outline: none;}")
+        self.sendButton.setAutoDefault(False)
+        self.sendButton.setObjectName("sendButton")
         self.textEdit = QtWidgets.QTextEdit(self.centralwidget)
-        self.textEdit.setGeometry(QtCore.QRect(10, 210, 580, 180))
+        self.textEdit.setGeometry(QtCore.QRect(10, 10, 580, 190))
         font = QtGui.QFont()
         font.setFamily("Verdana")
         font.setPointSize(10)
         self.textEdit.setFont(font)
+        self.textEdit.setStyleSheet("QTextEdit{\n"
+"    border:none;\n"
+"    background-color:white;\n"
+"}")
         self.textEdit.setObjectName("textEdit")
         self.listWidget = QtWidgets.QListWidget(self.centralwidget)
-        self.listWidget.setGeometry(QtCore.QRect(10, 10, 580, 192))
+        self.listWidget.setGeometry(QtCore.QRect(10, 210, 450, 190))
         font = QtGui.QFont()
         font.setFamily("Verdana")
         font.setPointSize(10)
         self.listWidget.setFont(font)
+        self.listWidget.setStyleSheet("QListWidget{\n"
+"    border:none;\n"
+"    background-color:white;\n"
+"}")
         self.listWidget.setObjectName("listWidget")
+        self.listWidget_2 = QtWidgets.QListWidget(self.centralwidget)
+        self.listWidget_2.setGeometry(QtCore.QRect(470, 210, 450, 190))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setPointSize(10)
+        self.listWidget_2.setFont(font)
+        self.listWidget_2.setStyleSheet("QListWidget{\n"
+"    border:none;\n"
+"    background-color:white;\n"
+"}")
+        self.listWidget_2.setObjectName("listWidget_2")
+        self.findButton = QtWidgets.QPushButton(self.centralwidget)
+        self.findButton.setGeometry(QtCore.QRect(600, 110, 320, 40))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setPointSize(12)
+        self.findButton.setFont(font)
+        self.findButton.setStyleSheet("QPushButton{\n"
+"    background-color:#cbd5d8;\n"
+"}")
+        self.findButton.setObjectName("findButton")
+        self.cancelButton = QtWidgets.QPushButton(self.centralwidget)
+        self.cancelButton.setGeometry(QtCore.QRect(600, 60, 320, 40))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setPointSize(12)
+        self.cancelButton.setFont(font)
+        self.cancelButton.setStyleSheet("QPushButton{\n"
+"    background-color:#cbd5d8;\n"
+"}")
+        self.cancelButton.setObjectName("cancelButton")
+        self.closeButton = QtWidgets.QPushButton(self.centralwidget)
+        self.closeButton.setGeometry(QtCore.QRect(600, 10, 320, 40))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setPointSize(12)
+        self.closeButton.setFont(font)
+        self.closeButton.setStyleSheet("QPushButton {    \n"
+"background-color:#d2374a;\n"
+"color:white\n"
+"}\n"
+"QPushButton:hover {\n"
+"background-color:#b22e3e;\n"
+"}")
+        self.closeButton.setObjectName("closeButton")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 600, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 930, 21))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -61,8 +125,11 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Message sender"))
-        self.pushButton.setText(_translate("MainWindow", "Send"))
-        self.textEdit.setPlaceholderText(_translate("MainWindow", "Enter your text"))
+        self.sendButton.setText(_translate("MainWindow", "Рассылка"))
+        self.textEdit.setPlaceholderText(_translate("MainWindow", "Введите текст сообщения"))
+        self.findButton.setText(_translate("MainWindow", "Поиск"))
+        self.cancelButton.setText(_translate("MainWindow", "Отмена рассылки"))
+        self.closeButton.setText(_translate("MainWindow", "Закрыть"))
 
 class Ui_Login(object):
     def setupUi(self, Login):
@@ -83,7 +150,7 @@ class Ui_Login(object):
         Login.setFont(font)
         Login.setWhatsThis("")
         Login.setAutoFillBackground(False)
-        Login.setStyleSheet("QWidget{background-color:#676DD7}")
+        Login.setStyleSheet("QWidget{background-color:#d7ecf4}")
         #Login.setSizeGripEnabled(False)
         #Login.setModal(False)
         self.pushButton = QtWidgets.QPushButton(Login)
@@ -163,11 +230,9 @@ class Ui_Login(object):
         self.pushButton.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
         self.pushButton.setAutoFillBackground(False)
         self.pushButton.setStyleSheet("QPushButton{\n"
-"    color:white;\n"
-"    background-color:#353BAE;    \n"
-"}\n"
+"    background-color:#5d9700;border:none} QPushButton:focus{outline: none;}\n}\n"
 "QPushButton:hover{\n"
-"    background-color:#3e44b7;    \n"
+"    background-color:#436d00;    \n"
 "}")
         self.pushButton.setAutoDefault(False)
         self.pushButton.setFlat(False)
@@ -204,7 +269,6 @@ class Ui_Login(object):
         font.setBold(False)
         font.setWeight(50)
         self.label.setFont(font)
-        self.label.setStyleSheet("QWidget{color:white;}")
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(Login)
@@ -219,8 +283,7 @@ class Ui_Login(object):
         font.setPointSize(14)
         font.setBold(False)
         font.setWeight(50)
-        self.label_2.setFont(font)
-        self.label_2.setStyleSheet("QWidget{color:white;}")
+        self.label_2.setFont(font)       
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
         self.closeButton = QtWidgets.QPushButton(Login)
@@ -235,13 +298,14 @@ class Ui_Login(object):
         self.closeButton.setAutoFillBackground(False)
         self.closeButton.setStyleSheet("QPushButton {    \n"
 "padding-bottom: 0.4em;\n"
-"background-color:#3F45B0;\n"
-"color:white\n"
+"background-color:#d2374a;\n"
+"color:white;\n"
+"border:none;\n"
 "}\n"
 "QPushButton:hover {\n"
 "padding-bottom: 0.4em;\n"
-"background-color:#3F4283;\n"
-"}")
+"background-color:#b22e3e;\n"
+"}QPushButton:focus{outline:none;}")
         self.closeButton.setAutoDefault(False)
         self.closeButton.setDefault(False)
         self.closeButton.setObjectName("closeButton")
