@@ -1,5 +1,5 @@
 import sys  # sys нужен для передачи argv в QApplication
-from PyQt5 import QtWidgets
+from PyQt5 import QtCore, QtWidgets
 import design  # Это наш конвертированный файл дизайна
 import vk_api
 import random
@@ -12,6 +12,7 @@ class Login(QtWidgets.QMainWindow, design.Ui_Login):
         self.setupUi(self)
 
         self.pushButton.clicked.connect(self.chkLogin)
+        self.closeButton.clicked.connect(self.close)
 
     def chkLogin(self):
         email = str(self.lineEdit.text())
@@ -140,7 +141,9 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
 
 def main():
     app = QtWidgets.QApplication(sys.argv)  # Новый экземпляр QApplication
+
     window = Login()  # Создаём объект класса Login
+    window.setWindowFlags(QtCore.Qt.FramelessWindowHint)
     window.show()  # Показываем окно
     app.exec_()  # и запускаем приложение
 
