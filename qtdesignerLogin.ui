@@ -285,7 +285,7 @@
     <string notr="true">QPushButton{
 	color:white;
 	background-color:#5d9700;
-	border:none;	
+	border:none;
 }
 QPushButton:hover{
 	background-color:#436d00;	
@@ -454,6 +454,9 @@ border:none;
 QPushButton:hover {
 padding-bottom: 0.4em;
 background-color:#b22e3e;
+}
+QPushButton:focus {
+outline:none;
 }</string>
    </property>
    <property name="text">

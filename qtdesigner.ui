@@ -42,7 +42,8 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget{
-	background-color:#d7ecf4
+	background-color:#d7ecf4;
+	border:none;outline: none;
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">

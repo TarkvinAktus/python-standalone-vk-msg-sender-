@@ -5,6 +5,11 @@ import vk_api
 import random
 import time
 
+class myQListWidget(QtWidgets.QListWidget):
+    def __init__(self): 
+        self.peer_id   
+
+
 class Login(QtWidgets.QMainWindow, design.Ui_Login):
 
     def __init__(self, parent=None):
