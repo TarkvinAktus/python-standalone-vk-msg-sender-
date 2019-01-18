@@ -5,9 +5,9 @@ import vk_api
 import random
 import time
 
-class myQListWidget(QtWidgets.QListWidget):
+class myQListWidgetItem(QtWidgets.QListWidgetItem):
     def __init__(self): 
-        self.peer_id   
+        self.peer_id  = 0
 
 
 class Login(QtWidgets.QMainWindow, design.Ui_Login):
@@ -19,6 +19,15 @@ class Login(QtWidgets.QMainWindow, design.Ui_Login):
         self.pushButton.clicked.connect(self.chkLogin)
         self.closeButton.clicked.connect(self.close)
     
+    def mousePressEvent(self, event):
+        self.offset = event.pos()
+    def mouseMoveEvent(self, event):
+        x=event.globalX()
+        y=event.globalY()
+        x_w = self.offset.x()
+        y_w = self.offset.y()
+        self.move(x-x_w, y-y_w)
+
 
     def chkLogin(self):
         email = str(self.lineEdit.text())
@@ -52,19 +61,27 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
  
         self.setupUi(self)  # Это нужно для инициализации нашего дизайна
 
+
+        self.findButton.clicked.connect(self.findGrp)
         self.sendButton.clicked.connect(self.sendMsg)
         self.closeButton.clicked.connect(self.close)
         self.listWidget.itemDoubleClicked.connect(self.add)  
 
+
+    def mousePressEvent(self, event):
+        self.offset = event.pos()
+    def mouseMoveEvent(self, event):
+        x=event.globalX()
+        y=event.globalY()
+        x_w = self.offset.x()
+        y_w = self.offset.y()
+        self.move(x-x_w, y-y_w)
+
     def add(self):
         add = self.listWidget.currentItem()
-        self.listWidget_2.addItem(add)
-
-        #self.pushButton.clicked.connect(self.on_pushButton_clicked)
-        #self.dialog = Second(self)
-
-    #def on_pushButton_clicked(self):
-       # self.dialog.show()
+        
+        self.listWidget_2.insertItem(0,add.text())
+        self.listWidget_2.item(0).setStatusTip(add.statusTip())
 
     def sendMsgtest(self): 
 
@@ -78,8 +95,10 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
             message=str(self.textEdit.toPlainText())
             )
         rand_id = rand_id + 1
+
+
     
-    def sendMsg(self): 
+    def findGrp(self):
         rand_id = 0
         
         vk_get_api = self.vk.get_api() 
@@ -105,6 +124,7 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
         counter=0
         prev_fail = 0
 
+        
 
         myOffset=0
         while j < lim:
@@ -115,9 +135,19 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
             while i < 20:
                 try:
                     if allConversations["items"][i]["conversation"]["peer"]["type"]=="chat" and allConversations["items"][i]["conversation"]["chat_settings"]["title"][0]!="Э":
-                        self.listWidget.addItem(str(allConversations["items"][i]["conversation"]["chat_settings"]["title"]))
-                        print(allConversations["items"][i]["conversation"]["chat_settings"]["title"], end = " --- ")        
-                        print(allConversations["items"][i]["conversation"]["peer"]["local_id"])
+                        
+                        bufferListItem = QtWidgets.QListWidgetItem()    
+
+                        bufferListItem.setText(allConversations["items"][i]["conversation"]["chat_settings"]["title"])
+                        bufferListItem.setStatusTip(str(allConversations["items"][i]["conversation"]["peer"]["local_id"]))
+                        self.listWidget.addItem(bufferListItem)
+
+                        print(str(bufferListItem.text()))
+                        print(str(bufferListItem.statusTip()))
+                        
+
+                        #print(allConversations["items"][i]["conversation"]["chat_settings"]["title"], end = " --- ")        
+                        #print(allConversations["items"][i]["conversation"]["peer"]["local_id"])
                         #time.sleep(1)
                         id = 2000000000+(allConversations["items"][i]["conversation"]["peer"]["local_id"])
                         #This is catch for message.send() limits of api
@@ -142,7 +172,80 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
                 i = i + 1
             myOffset = myOffset + 20
             j = j + 1
+        
+
+
+        self.listWidget.addItem("Найдено "+str(counter))    
+        print("Найдено "+str(counter))
+
+
+        #single msg
+        #vk_get_api.messages.send( 
+        #    peer_id=35109961, 
+        #    message=str(self.textEdit.toPlainText()), 
+        #    random_id = rand_id
+        #)
+
+        #rand_id = rand_id + 1
+
+
+
+
+    def sendMsg(self): 
+        rand_id = 0
+        
+        vk_get_api = self.vk.get_api() 
+
+        allConversations = vk_get_api.messages.getConversations()
+       
+
+        #API has limit for requests equals to 20 
+        #so we calculate num of iterations and check all dialogs what we need 
+        text = str(self.textEdit.toPlainText())
+
+        numOfConv = self.listWidget_2.count()
+
+        
+        j = 0
+        i = 0
+        n = 0
+        msgForce = 1
+        randIdForMsg = 0
+
+        print(numOfConv)
+        print(j)
+
+        counter=0
+        prev_fail = 0
+
+        while j < numOfConv:
             
+            try:
+                id = 2000000000+int(self.listWidget_2.item(n).statusTip())
+                #This is catch for message.send() limits of api
+                #if msg is not send we wait for 1 second and try again
+                while msgForce==1:
+                    try:
+                        vk_get_api.messages.send(random_id=rand_id,peer_id=id,message=text)
+                        rand_id = rand_id + 1
+                        print(self.listWidget_2.item(n).statusTip())
+                        
+                        msgForce = 0
+                        randIdForMsg = randIdForMsg + 1
+                    except:
+                        time.sleep(1)
+                        msgForce = 1    
+                    counter = counter + 1
+                    prev_fail = 0
+            except:
+                #This segment starts when something goes wrong
+                if prev_fail == 0:
+                    print("---")
+                prev_fail = 1
+            j = j + 1
+        
+
+
         self.listWidget.addItem("Найдено "+str(counter))    
         print("Найдено "+str(counter))
 
