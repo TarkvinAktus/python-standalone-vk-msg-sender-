@@ -65,7 +65,8 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
         self.findButton.clicked.connect(self.findGrp)
         self.sendButton.clicked.connect(self.sendMsg)
         self.closeButton.clicked.connect(self.close)
-        self.listWidget.itemDoubleClicked.connect(self.add)  
+        self.listWidget.itemDoubleClicked.connect(self.add)
+        self.listWidget_2.itemDoubleClicked.connect(self.delitem)    
 
 
     def mousePressEvent(self, event):
@@ -82,6 +83,10 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
         
         self.listWidget_2.insertItem(0,add.text())
         self.listWidget_2.item(0).setStatusTip(add.statusTip())
+    
+    def delitem(self):
+        SelectedItem = self.listWidget_2.currentItem()
+        self.listWidget_2.takeItem(self.listWidget_2.row(SelectedItem))
 
     def sendMsgtest(self): 
 
@@ -99,6 +104,7 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
 
     
     def findGrp(self):
+        QtWidgets.QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
         rand_id = 0
         
         vk_get_api = self.vk.get_api() 
@@ -107,8 +113,7 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
        
 
         #API has limit for requests equals to 20 
-        #so we calculate num of iterations and check all dialogs what we need 
-        text = str(self.textEdit.toPlainText())
+        #so we calculate num of iterations and check all dialogs what we need
 
         numOfConv = allConversations["count"]
 
@@ -172,27 +177,19 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
                 i = i + 1
             myOffset = myOffset + 20
             j = j + 1
-        
-
 
         self.listWidget.addItem("Найдено "+str(counter))    
-        print("Найдено "+str(counter))
+        #print("Найдено "+str(counter))
 
-
-        #single msg
-        #vk_get_api.messages.send( 
-        #    peer_id=35109961, 
-        #    message=str(self.textEdit.toPlainText()), 
-        #    random_id = rand_id
-        #)
-
-        #rand_id = rand_id + 1
+        QtWidgets.QApplication.restoreOverrideCursor()
 
 
 
 
-    def sendMsg(self): 
-        rand_id = 0
+
+    def sendMsg(self):
+        QtWidgets.QApplication.setOverrideCursor(QtCore.Qt.WaitCursor) 
+        rand_id = random.randint(0,14341324)
         
         vk_get_api = self.vk.get_api() 
 
@@ -216,38 +213,24 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
         print(j)
 
         counter=0
-        prev_fail = 0
 
         while j < numOfConv:
-            
+            time.sleep(.100)
             try:
-                id = 2000000000+int(self.listWidget_2.item(n).statusTip())
+                id = 2000000000+int(self.listWidget_2.item(j).statusTip())
                 #This is catch for message.send() limits of api
                 #if msg is not send we wait for 1 second and try again
-                while msgForce==1:
-                    try:
-                        vk_get_api.messages.send(random_id=rand_id,peer_id=id,message=text)
-                        rand_id = rand_id + 1
-                        print(self.listWidget_2.item(n).statusTip())
-                        
-                        msgForce = 0
-                        randIdForMsg = randIdForMsg + 1
-                    except:
-                        time.sleep(1)
-                        msgForce = 1    
-                    counter = counter + 1
-                    prev_fail = 0
+                try:
+                    vk_get_api.messages.send(random_id=rand_id,peer_id=id,message=text)
+                    rand_id = rand_id + 5
+                    print(self.listWidget_2.item(j).statusTip())
+                    print(rand_id)
+                except:
+                    time.sleep(1) 
             except:
-                #This segment starts when something goes wrong
-                if prev_fail == 0:
-                    print("---")
-                prev_fail = 1
+                time.sleep(1)   
             j = j + 1
-        
-
-
-        self.listWidget.addItem("Найдено "+str(counter))    
-        print("Найдено "+str(counter))
+        QtWidgets.QApplication.restoreOverrideCursor()
 
 
         #single msg
