@@ -82,7 +82,7 @@ class Login(QtWidgets.QMainWindow, design.Ui_Login):
             self.hide()
         except:
             print("auth error")
-        QtWidgets.QApplication.restoreOverrideCursor()
+            QtWidgets.QApplication.restoreOverrideCursor()
 
         
         
