@@ -4,6 +4,8 @@ import design  # Это наш конвертированный файл диз�
 import vk_api
 import random
 import time
+import threading
+import asyncio
 
 class Find(QtWidgets.QMainWindow, design.Ui_Find):
 
@@ -74,12 +76,15 @@ class Login(QtWidgets.QMainWindow, design.Ui_Login):
             vk.auth()
 
             self.mainform = Main(vk)
+            QtWidgets.QApplication.restoreOverrideCursor()
             self.mainform.setWindowFlags(QtCore.Qt.FramelessWindowHint)
             self.mainform.show()
             self.hide()
         except:
             print("auth error")
         QtWidgets.QApplication.restoreOverrideCursor()
+
+        
         
      
 
@@ -91,6 +96,7 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
         super(Main,self).__init__(parent)
         self.req = "all"
         self.vk = vk
+
  
         self.setupUi(self)  # Это нужно для инициализации нашего дизайна
 
@@ -100,7 +106,13 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
         #self.findButton.clicked.connect(self.sendMsg)
         self.closeButton.clicked.connect(self.close)
         self.listWidget.itemDoubleClicked.connect(self.add)
-        self.listWidget_2.itemDoubleClicked.connect(self.delitem)    
+        self.listWidget_2.itemDoubleClicked.connect(self.delitem)
+
+        t = threading.Thread(target=self.findGrp)
+        t.daemon = True
+        t.start()
+        
+        
 
 
     def mousePressEvent(self, event):
@@ -196,6 +208,7 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
                         prev_fail = 0
                 except:
                     #This segment starts when something goes wrong
+
                     if prev_fail == 0:
                         print("---")
                     prev_fail = 1
@@ -207,6 +220,7 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
         #print("Найдено "+str(counter))
 
         QtWidgets.QApplication.restoreOverrideCursor()
+        
 
 
 
