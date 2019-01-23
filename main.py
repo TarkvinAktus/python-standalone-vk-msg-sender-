@@ -1,5 +1,5 @@
 import sys  # sys нужен для передачи argv в QApplication
-from PyQt5 import QtCore, QtWidgets
+from PyQt5 import QtCore, QtWidgets, QtGui
 import design  # Это наш конвертированный файл дизайна
 import vk_api
 import random
@@ -239,10 +239,19 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
         #so we calculate num of iterations and check all dialogs what we need 
 
         
-        text = str(self.textEdit.toPlainText())
-
-        print(text)
         
+
+        text = self.textEdit.toHtml()
+        #print(text)
+        text = text.replace('<img src="https://vk.com/emoji/e/f09f988e.png" />','&#128526;')
+        text = text.replace('<img src="https://vk.com/emoji/e/f09f91b9.png" />','&#128121;')
+        text = text.replace('<img src="https://vk.com/emoji/e/f09f91ba.png" />','&#128122;')
+        #text = text.replace('%F0%9F%98%8E','&#128526;')
+        
+        
+        self.textEdit.clear()
+        self.textEdit.insertHtml(text)
+        text = self.textEdit.toPlainText()
 
         numOfConv = self.listWidget_2.count()
 
@@ -252,8 +261,7 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
         n = 0
         msgForce = 1
         randIdForMsg = 0
-
-        print(numOfConv)
+        #print(numOfConv)￼￼
         print(j)
 
         counter=0
