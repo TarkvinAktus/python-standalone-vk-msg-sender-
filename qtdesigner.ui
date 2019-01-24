@@ -13,7 +13,7 @@
     <x>0</x>
     <y>0</y>
     <width>930</width>
-    <height>441</height>
+    <height>623</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -51,21 +51,22 @@
     <property name="geometry">
      <rect>
       <x>600</x>
-      <y>160</y>
+      <y>180</y>
       <width>320</width>
-      <height>40</height>
+      <height>50</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>12</pointsize>
+      <pointsize>14</pointsize>
      </font>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton{
 	color:white;
-	background-color:#5d9700;	
+	background-color:#5d9700;
+	border:none;	
 }
 QPushButton:hover{
 	background-color:#436d00;	
@@ -83,15 +84,17 @@ QPushButton:focus{outline: none;}</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
+      <y>30</y>
       <width>580</width>
-      <height>190</height>
+      <height>200</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
       <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
      </font>
     </property>
     <property name="styleSheet">
@@ -108,9 +111,9 @@ QPushButton:focus{outline: none;}</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>210</y>
+      <y>240</y>
       <width>450</width>
-      <height>190</height>
+      <height>340</height>
      </rect>
     </property>
     <property name="font">
@@ -123,16 +126,33 @@ QPushButton:focus{outline: none;}</string>
      <string notr="true">QListWidget{
 	border:none;
 	background-color:white;
-}</string>
+}
+QListWidget{
+    border:none;
+    background-color:white;
+}
+QScrollBar:vertical {border: none;
+background-color: white;}
+QScrollBar::handle:vertical {
+border:none;background-color:#5d9700;}</string>
+    </property>
+    <property name="autoScroll">
+     <bool>true</bool>
+    </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::SingleSelection</enum>
+    </property>
+    <property name="verticalScrollMode">
+     <enum>QAbstractItemView::ScrollPerItem</enum>
     </property>
    </widget>
    <widget class="QListWidget" name="listWidget_2">
     <property name="geometry">
      <rect>
       <x>470</x>
-      <y>210</y>
+      <y>240</y>
       <width>450</width>
-      <height>190</height>
+      <height>340</height>
      </rect>
     </property>
     <property name="font">
@@ -145,76 +165,96 @@ QPushButton:focus{outline: none;}</string>
      <string notr="true">QListWidget{
 	border:none;
 	background-color:white;
-}</string>
+}
+QListWidget{
+    border:none;
+    background-color:white;
+}
+QScrollBar:vertical {border: none;
+background-color: white;}
+QScrollBar::handle:vertical {
+border:none;background-color:#5d9700;}</string>
+    </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::SingleSelection</enum>
     </property>
    </widget>
    <widget class="QPushButton" name="findButton">
     <property name="geometry">
      <rect>
       <x>600</x>
-      <y>110</y>
+      <y>130</y>
       <width>320</width>
-      <height>40</height>
+      <height>50</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>12</pointsize>
+      <pointsize>14</pointsize>
      </font>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton{
-	background-color:#cbd5d8;
+	background-color:white;
+border:none;
+}
+QPushButton:hover{
+	background-color:#9ca4a8;
 }</string>
     </property>
     <property name="text">
      <string>Поиск</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="cancelButton">
+   <widget class="QPushButton" name="selectAllButton">
     <property name="geometry">
      <rect>
       <x>600</x>
-      <y>60</y>
+      <y>80</y>
       <width>320</width>
-      <height>40</height>
+      <height>50</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>12</pointsize>
+      <pointsize>14</pointsize>
      </font>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton{
-	background-color:#cbd5d8;
+	background-color:white;
+border:none;
+}
+QPushButton:hover{
+	background-color:#9ca4a8;
 }</string>
     </property>
     <property name="text">
-     <string>Отмена рассылки</string>
+     <string>Выбрать всё</string>
     </property>
    </widget>
    <widget class="QPushButton" name="closeButton">
     <property name="geometry">
      <rect>
       <x>600</x>
-      <y>10</y>
+      <y>30</y>
       <width>320</width>
-      <height>40</height>
+      <height>50</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>12</pointsize>
+      <pointsize>14</pointsize>
      </font>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {	
 background-color:#d2374a;
-color:white
+color:white;
+border:none;
 }
 QPushButton:hover {
 background-color:#b22e3e;

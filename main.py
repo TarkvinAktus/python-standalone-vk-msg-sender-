@@ -75,11 +75,14 @@ class Login(QtWidgets.QMainWindow, design.Ui_Login):
             vk = vk_api.VkApi(login = email, password = password) 
             vk.auth()
 
-            self.mainform = Main(vk)
-            QtWidgets.QApplication.restoreOverrideCursor()
-            self.mainform.setWindowFlags(QtCore.Qt.FramelessWindowHint)
-            self.mainform.show()
-            self.hide()
+            try:
+                self.mainform = Main(vk)
+                QtWidgets.QApplication.restoreOverrideCursor()
+                self.mainform.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+                self.mainform.show()
+                self.hide()
+            except:
+                print("form error")
         except:
             print("auth error")
             QtWidgets.QApplication.restoreOverrideCursor()
@@ -97,9 +100,10 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
         self.req = "all"
         self.vk = vk
 
- 
-        self.setupUi(self)  # Это нужно для инициализации нашего дизайна
-
+        try:
+            self.setupUi(self)  # Это нужно для инициализации нашего дизайна
+        except:
+            print("UI problems")
 
         self.findButton.clicked.connect(self.findGrp)
         self.sendButton.clicked.connect(self.sendMsg)
@@ -244,10 +248,10 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
         text = self.textEdit.toHtml()
         #print(text)
         text = text.replace('<img src="https://vk.com/emoji/e/f09f988e.png" />','&#128526;')
-        text = text.replace('<img src="https://vk.com/emoji/e/f09f91b9.png" />','&#128121;')
+        text = text.replace('<img src="https://vk.com/emoji/e/f09f91b9.png" />','👹')
         text = text.replace('<img src="https://vk.com/emoji/e/f09f91ba.png" />','&#128122;')
         #text = text.replace('%F0%9F%98%8E','&#128526;')
-        
+        #<img class="emoji" src="/emoji/e/f09f91b9.png" alt="👹">
         
         self.textEdit.clear()
         self.textEdit.insertHtml(text)
