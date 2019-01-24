@@ -9,13 +9,14 @@ import asyncio
 
 class Find(QtWidgets.QMainWindow, design.Ui_Find):
 
-    def __init__(self, parent=None):
-        super(Find, self).__init__(parent)
+    def __init__(self,parent):
+        super(Find, self).__init__()
         self.setupUi(self)
 
-        self.pushButton.clicked.connect(self.findDialogs)
-        self.closeButton.clicked.connect(self.close)
-    
+        self.self.req = self.lineEdit.text()
+        self.pushButton.clicked.connect(self.self.findGrp)
+        self.self.parent.req = "all"
+
     def mousePressEvent(self, event):
         self.offset = event.pos()
     def mouseMoveEvent(self, event):
@@ -24,26 +25,6 @@ class Find(QtWidgets.QMainWindow, design.Ui_Find):
         x_w = self.offset.x()
         y_w = self.offset.y()
         self.move(x-x_w, y-y_w)
-
-
-    def findDialogs(self):
-        email = str(self.lineEdit.text())
-        password = str(self.lineEdit_2.text())
-
-        #self.setFocusPolicy(QtCore.Qt.NoFocus)
-        QtWidgets.QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
-        time.sleep(2)
-        try:
-            vk = vk_api.VkApi(login = email, password = password) 
-            vk.auth()
-
-            self.mainform = Main(vk)
-            self.mainform.setWindowFlags(QtCore.Qt.FramelessWindowHint)
-            self.mainform.show()
-            self.hide()
-        except:
-            print("auth error")
-        QtWidgets.QApplication.restoreOverrideCursor()
 
 class Login(QtWidgets.QMainWindow, design.Ui_Login):
 
@@ -105,7 +86,7 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
         except:
             print("UI problems")
 
-        self.findButton.clicked.connect(self.findGrp)
+        self.findButton.clicked.connect(self.findItem)
         self.sendButton.clicked.connect(self.sendMsg)
         #self.findButton.clicked.connect(self.sendMsg)
         self.closeButton.clicked.connect(self.close)
@@ -116,8 +97,10 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
         t.daemon = True
         t.start()
         
-        
-
+    def findItem(self):    
+        self.findWidget = Find(self)
+        self.findWidget.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+        self.findWidget.show()
 
     def mousePressEvent(self, event):
         self.offset = event.pos()
@@ -154,6 +137,7 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
 
     
     def findGrp(self):
+        self.listWidget.clear()
         QtWidgets.QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
         rand_id = 0
         
@@ -161,7 +145,7 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
 
         allConversations = vk_get_api.messages.getConversations()
        
-
+        QtWidgets.QApplication.restoreOverrideCursor()
         #API has limit for requests equals to 20 
         #so we calculate num of iterations and check all dialogs what we need
 
@@ -223,7 +207,7 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
         self.listWidget.addItem("Найдено "+str(counter))    
         #print("Найдено "+str(counter))
 
-        QtWidgets.QApplication.restoreOverrideCursor()
+        
         
 
 

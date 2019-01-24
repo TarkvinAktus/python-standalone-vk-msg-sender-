@@ -378,8 +378,8 @@ class Ui_Find(object):
         Find.setStyleSheet("QWidget{\n"
 "    background-color:#d7ecf4\n"
 "}")
-        Find.setSizeGripEnabled(False)
-        Find.setModal(False)
+        #Find.setSizeGripEnabled(False)
+        #Find.setModal(False)
         self.pushButton = QtWidgets.QPushButton(Find)
         self.pushButton.setGeometry(QtCore.QRect(0, 120, 300, 55))
         palette = QtGui.QPalette()
