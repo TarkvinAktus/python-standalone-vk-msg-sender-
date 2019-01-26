@@ -9,14 +9,22 @@ import asyncio
 
 class Find(QtWidgets.QMainWindow, design.Ui_Find):
 
-    def __init__(self,parent):
-        super(Find, self).__init__()
+    def __init__(self, mainform ,parent=None):
+        super(Find, self).__init__(parent)
+        self.mainform = mainform
         self.setupUi(self)
 
-        self.self.req = self.lineEdit.text()
-        self.pushButton.clicked.connect(self.self.findGrp)
-        self.self.parent.req = "all"
-
+        #self.pushButton.clicked.connect(self.chkLogin)
+        self.closeButton.clicked.connect(self.close)
+        self.pushButton.clicked.connect(self.find)
+ 
+    def find(self):
+        self.mainform.req = self.lineEdit.text()
+        t = threading.Thread(target=self.mainform.findGrp())
+        t.daemon = True
+        t.start()
+        self.close()
+    
     def mousePressEvent(self, event):
         self.offset = event.pos()
     def mouseMoveEvent(self, event):
@@ -81,25 +89,36 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
         self.req = "all"
         self.vk = vk
 
+        self.findWidget = Find(self) 
+        self.findWidget.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+        
+ 
+ 
+    
+
         try:
             self.setupUi(self)  # Это нужно для инициализации нашего дизайна
         except:
             print("UI problems")
 
-        self.findButton.clicked.connect(self.findItem)
+        #self.findButton.clicked.connect(self.findItem)
+
         self.sendButton.clicked.connect(self.sendMsg)
-        #self.findButton.clicked.connect(self.sendMsg)
+        self.findButton.clicked.connect(self.findItem)
         self.closeButton.clicked.connect(self.close)
         self.listWidget.itemDoubleClicked.connect(self.add)
         self.listWidget_2.itemDoubleClicked.connect(self.delitem)
 
+        
+
         t = threading.Thread(target=self.findGrp)
         t.daemon = True
         t.start()
+
+    
         
     def findItem(self):    
-        self.findWidget = Find(self)
-        self.findWidget.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+        
         self.findWidget.show()
 
     def mousePressEvent(self, event):
@@ -183,7 +202,7 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
                             print(str(bufferListItem.text()))
                             print(str(bufferListItem.statusTip()))
                         else: 
-                            if dialogTitle.find(req) != -1:
+                            if allConversations["items"][i]["conversation"]["chat_settings"]["title"].find(self.req) != -1:
                                 bufferListItem = QtWidgets.QListWidgetItem()    
                                 bufferListItem.setText(allConversations["items"][i]["conversation"]["chat_settings"]["title"])
                                 bufferListItem.setStatusTip(str(allConversations["items"][i]["conversation"]["peer"]["local_id"]))
