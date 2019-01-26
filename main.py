@@ -6,6 +6,23 @@ import random
 import time
 import threading
 import asyncio
+import copy
+
+class ErrorMsg(QtWidgets.QMainWindow, design.Ui_Error):
+
+    def __init__(self, mainform ,parent=None):
+        super(ErrorMsg, self).__init__(parent)
+        self.setupUi(self)
+        self.closeButton.clicked.connect(self.close)
+ 
+    def mousePressEvent(self, event):
+        self.offset = event.pos()
+    def mouseMoveEvent(self, event):
+        x=event.globalX()
+        y=event.globalY()
+        x_w = self.offset.x()
+        y_w = self.offset.y()
+        self.move(x-x_w, y-y_w)
 
 class Find(QtWidgets.QMainWindow, design.Ui_Find):
 
@@ -20,10 +37,10 @@ class Find(QtWidgets.QMainWindow, design.Ui_Find):
  
     def find(self):
         self.mainform.req = self.lineEdit.text()
+        self.close()
         t = threading.Thread(target=self.mainform.findGrp())
         t.daemon = True
         t.start()
-        self.close()
     
     def mousePressEvent(self, event):
         self.offset = event.pos()
@@ -73,8 +90,11 @@ class Login(QtWidgets.QMainWindow, design.Ui_Login):
             except:
                 print("form error")
         except:
+            self.autherr = ErrorMsg(self)  
+            self.autherr.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+            self.autherr.show()
             print("auth error")
-            QtWidgets.QApplication.restoreOverrideCursor()
+        QtWidgets.QApplication.restoreOverrideCursor()
 
         
         
@@ -88,14 +108,11 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
         super(Main,self).__init__(parent)
         self.req = "all"
         self.vk = vk
+        self.chat_array = []
 
         self.findWidget = Find(self) 
         self.findWidget.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         
- 
- 
-    
-
         try:
             self.setupUi(self)  # Это нужно для инициализации нашего дизайна
         except:
@@ -106,12 +123,13 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
         self.sendButton.clicked.connect(self.sendMsg)
         self.findButton.clicked.connect(self.findItem)
         self.closeButton.clicked.connect(self.close)
+        self.selectAllButton.clicked.connect(self.selectAll)
         self.listWidget.itemDoubleClicked.connect(self.add)
         self.listWidget_2.itemDoubleClicked.connect(self.delitem)
 
         
 
-        t = threading.Thread(target=self.findGrp)
+        t = threading.Thread(target=self.firstfindGrp)
         t.daemon = True
         t.start()
 
@@ -139,50 +157,23 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
     def delitem(self):
         SelectedItem = self.listWidget_2.currentItem()
         self.listWidget_2.takeItem(self.listWidget_2.row(SelectedItem))
-
-    def sendMsgtest(self): 
-
-        rand_id = 0
-
-        vk_get_api = self.vk.get_api() 
-
-        vk_get_api.messages.send(
-            random_id=rand_id,
-            user_id=35109961,
-            message=str(self.textEdit.toPlainText())
-            )
-        rand_id = rand_id + 1
-
-
-    
-    def findGrp(self):
+  
+    def firstfindGrp(self):
         self.listWidget.clear()
         QtWidgets.QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
-        rand_id = 0
         
         vk_get_api = self.vk.get_api() 
-
         allConversations = vk_get_api.messages.getConversations()
-       
-        QtWidgets.QApplication.restoreOverrideCursor()
         #API has limit for requests equals to 20 
         #so we calculate num of iterations and check all dialogs what we need
-
         numOfConv = allConversations["count"]
 
         lim = numOfConv//20 + 1
         j = 0
         i = 0
-        msgForce = 1
-        randIdForMsg = 0
-
-        print(numOfConv)
-        print(j)
-
+    
         counter=0
         prev_fail = 0
-
-        
 
         myOffset=0
         while j < lim:
@@ -194,43 +185,58 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
                 try:
                     if allConversations["items"][i]["conversation"]["peer"]["type"]=="chat" and allConversations["items"][i]["conversation"]["chat_settings"]["title"][0]!="Э":
                         
-                        if self.req == "all":
-                            bufferListItem = QtWidgets.QListWidgetItem()    
-                            bufferListItem.setText(allConversations["items"][i]["conversation"]["chat_settings"]["title"])
-                            bufferListItem.setStatusTip(str(allConversations["items"][i]["conversation"]["peer"]["local_id"]))
-                            self.listWidget.addItem(bufferListItem)
-                            print(str(bufferListItem.text()))
-                            print(str(bufferListItem.statusTip()))
-                        else: 
-                            if allConversations["items"][i]["conversation"]["chat_settings"]["title"].find(self.req) != -1:
-                                bufferListItem = QtWidgets.QListWidgetItem()    
-                                bufferListItem.setText(allConversations["items"][i]["conversation"]["chat_settings"]["title"])
-                                bufferListItem.setStatusTip(str(allConversations["items"][i]["conversation"]["peer"]["local_id"]))
-                                self.listWidget.addItem(bufferListItem)
-                                print(str(bufferListItem.text()))
-                                print(str(bufferListItem.statusTip()))
-                            else:
-                                i = i + 1
+                        bufferListItem = QtWidgets.QListWidgetItem()    
+                        bufferListItem.setText(allConversations["items"][i]["conversation"]["chat_settings"]["title"])
+                        bufferListItem.setStatusTip(str(allConversations["items"][i]["conversation"]["peer"]["local_id"]))
+
+                        self.listWidget.addItem(bufferListItem)
+                        self.chat_array.append([bufferListItem.text(),bufferListItem.statusTip()])
+                        
                         counter = counter + 1
                         prev_fail = 0
                 except:
                     #This segment starts when something goes wrong
-
                     if prev_fail == 0:
                         print("---")
                     prev_fail = 1
                 i = i + 1
             myOffset = myOffset + 20
             j = j + 1
-
-        self.listWidget.addItem("Найдено "+str(counter))    
-        #print("Найдено "+str(counter))
-
+        QtWidgets.QApplication.restoreOverrideCursor()
         
+        self.listWidget.addItem("Всего "+str(counter))   
+
+    def findGrp(self):
+        counter = 0
+        self.listWidget_2.clear()
+        QtWidgets.QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
         
+        for i in range(len(self.chat_array)):
 
+            if self.chat_array[i][0].find(self.req) != -1:
+                bufferListItem = QtWidgets.QListWidgetItem()    
+                bufferListItem.setText(self.chat_array[i][0])
+                bufferListItem.setStatusTip(self.chat_array[i][1])
+                self.listWidget_2.addItem(bufferListItem)
 
+                counter = counter + 1
 
+        QtWidgets.QApplication.restoreOverrideCursor()
+
+        if counter == 0:
+            self.autherr = ErrorMsg(self)  
+            self.autherr.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+            self.autherr.label.setText("Не найдено")
+            self.autherr.show()
+
+    def selectAll(self):
+        self.listWidget_2.clear()
+        for i in range(len(self.chat_array)):           
+            bufferListItem = QtWidgets.QListWidgetItem()    
+            bufferListItem.setText(self.chat_array[i][0])
+            bufferListItem.setStatusTip(self.chat_array[i][1])
+            self.listWidget_2.addItem(bufferListItem)
+        
 
 
     def sendMsg(self):
@@ -238,15 +244,6 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
         rand_id = random.randint(0,14341324)
         
         vk_get_api = self.vk.get_api() 
-
-        allConversations = vk_get_api.messages.getConversations()
-       
-
-        #API has limit for requests equals to 20 
-        #so we calculate num of iterations and check all dialogs what we need 
-
-        
-        
 
         text = self.textEdit.toHtml()
         #print(text)
@@ -264,14 +261,6 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
 
         
         j = 0
-        i = 0
-        n = 0
-        msgForce = 1
-        randIdForMsg = 0
-        #print(numOfConv)￼￼
-        print(j)
-
-        counter=0
 
         while j < numOfConv:
             time.sleep(.100)
@@ -289,17 +278,19 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
             except:
                 time.sleep(1)   
             j = j + 1
+        self.listWidget_2.clear()
+
+        self.done_msg = ErrorMsg(self)  
+        self.done_msg.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+        self.done_msg.label.setText("Готово")
+        self.done_msg.label.setStyleSheet("QLabel{\n"
+"color:black;\n"
+"}")
+        self.done_msg.setStyleSheet("QWidget{background-color:#d7ecf4;border:none;}")
+        self.done_msg.closeButton.setStyleSheet("QPushButton{background-color:#5d9700;color:white;}QPushButton:hover{background-color:#436d00;}")
+        self.done_msg.show()
+
         QtWidgets.QApplication.restoreOverrideCursor()
-
-
-        #single msg
-        #vk_get_api.messages.send( 
-        #    peer_id=35109961, 
-        #    message=str(self.textEdit.toPlainText()), 
-        #    random_id = rand_id
-        #)
-
-        #rand_id = rand_id + 1
 
 def main():
     app = QtWidgets.QApplication(sys.argv)  # Новый экземпляр QApplication

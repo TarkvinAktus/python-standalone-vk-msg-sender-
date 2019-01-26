@@ -134,7 +134,11 @@ QListWidget{
 QScrollBar:vertical {border: none;
 background-color: white;}
 QScrollBar::handle:vertical {
-border:none;background-color:#5d9700;}</string>
+border:none;background-color:#acd8e8;}
+QScrollBar:horizontal {border: none;
+background-color: white;}
+QScrollBar::handle:horizontall {
+border:none;background-color:#acd8e8;}</string>
     </property>
     <property name="autoScroll">
      <bool>true</bool>
@@ -173,7 +177,9 @@ QListWidget{
 QScrollBar:vertical {border: none;
 background-color: white;}
 QScrollBar::handle:vertical {
-border:none;background-color:#5d9700;}</string>
+border:none;background-color:#acd8e8;}
+QScrollBar:horizontal {border: none;
+background-color: white;}</string>
     </property>
     <property name="selectionMode">
      <enum>QAbstractItemView::SingleSelection</enum>
