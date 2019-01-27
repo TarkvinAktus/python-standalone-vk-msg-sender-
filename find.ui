@@ -46,8 +46,8 @@
    <bool>false</bool>
   </property>
   <property name="styleSheet">
-   <string notr="true">QWidget{
-	background-color:#d7ecf4
+   <string notr="true">QDialog{
+	background-color:#d7ecf4;
 }</string>
   </property>
   <property name="sizeGripEnabled">
@@ -328,6 +328,9 @@ QPushButton:focus{outline: none;}</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
+   </property>
+   <property name="placeholderText">
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="label">

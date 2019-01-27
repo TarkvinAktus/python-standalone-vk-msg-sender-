@@ -117,7 +117,7 @@ class Ui_MainWindow(object):
 "border:none;\n"
 "}\n"
 "QPushButton:hover{\n"
-"    background-color:#9ca4a8;\n"
+"    background-color:#f2f6fc;\n"
 "}")
         self.findButton.setObjectName("findButton")
         self.selectAllButton = QtWidgets.QPushButton(self.centralwidget)
@@ -131,7 +131,7 @@ class Ui_MainWindow(object):
 "border:none;\n"
 "}\n"
 "QPushButton:hover{\n"
-"    background-color:#9ca4a8;\n"
+"    background-color:#f2f6fc;\n"
 "}")
         self.selectAllButton.setObjectName("selectAllButton")
         self.closeButton = QtWidgets.QPushButton(self.centralwidget)
