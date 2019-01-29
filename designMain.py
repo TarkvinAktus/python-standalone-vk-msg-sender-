@@ -13,7 +13,7 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setWindowModality(QtCore.Qt.NonModal)
         MainWindow.setEnabled(True)
-        MainWindow.resize(930, 623)
+        MainWindow.resize(930, 675)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -75,7 +75,11 @@ class Ui_MainWindow(object):
 "QScrollBar:vertical {border: none;\n"
 "background-color: white;}\n"
 "QScrollBar::handle:vertical {\n"
-"border:none;background-color:#5d9700;}")
+"border:none;background-color:#acd8e8;}\n"
+"QScrollBar:horizontal {border: none;\n"
+"background-color: white;}\n"
+"QScrollBar::handle:horizontall {\n"
+"border:none;background-color:#acd8e8;}")
         self.listWidget.setAutoScroll(True)
         self.listWidget.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
         self.listWidget.setVerticalScrollMode(QtWidgets.QAbstractItemView.ScrollPerItem)
@@ -97,7 +101,9 @@ class Ui_MainWindow(object):
 "QScrollBar:vertical {border: none;\n"
 "background-color: white;}\n"
 "QScrollBar::handle:vertical {\n"
-"border:none;background-color:#5d9700;}")
+"border:none;background-color:#acd8e8;}\n"
+"QScrollBar:horizontal {border: none;\n"
+"background-color: white;}")
         self.listWidget_2.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
         self.listWidget_2.setObjectName("listWidget_2")
         self.findButton = QtWidgets.QPushButton(self.centralwidget)
@@ -111,7 +117,7 @@ class Ui_MainWindow(object):
 "border:none;\n"
 "}\n"
 "QPushButton:hover{\n"
-"    background-color:#9ca4a8;\n"
+"    background-color:#f2f6fc;\n"
 "}")
         self.findButton.setObjectName("findButton")
         self.selectAllButton = QtWidgets.QPushButton(self.centralwidget)
@@ -125,7 +131,7 @@ class Ui_MainWindow(object):
 "border:none;\n"
 "}\n"
 "QPushButton:hover{\n"
-"    background-color:#9ca4a8;\n"
+"    background-color:#f2f6fc;\n"
 "}")
         self.selectAllButton.setObjectName("selectAllButton")
         self.closeButton = QtWidgets.QPushButton(self.centralwidget)
@@ -143,6 +149,39 @@ class Ui_MainWindow(object):
 "background-color:#b22e3e;\n"
 "}")
         self.closeButton.setObjectName("closeButton")
+        self.addList = QtWidgets.QPushButton(self.centralwidget)
+        self.addList.setGeometry(QtCore.QRect(660, 590, 40, 40))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.addList.sizePolicy().hasHeightForWidth())
+        self.addList.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setPointSize(14)
+        self.addList.setFont(font)
+        self.addList.setStyleSheet("QPushButton{\n"
+"    background-color:white;\n"
+"border:none;\n"
+"}\n"
+"QPushButton:hover{\n"
+"    background-color:#f2f6fc;\n"
+"}")
+        self.addList.setObjectName("addList")
+        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton.setGeometry(QtCore.QRect(710, 590, 211, 40))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setPointSize(14)
+        self.pushButton.setFont(font)
+        self.pushButton.setStyleSheet("QPushButton{\n"
+"    background-color:white;\n"
+"border:none;\n"
+"}\n"
+"QPushButton:hover{\n"
+"    background-color:#f2f6fc;\n"
+"}")
+        self.pushButton.setObjectName("pushButton")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 930, 21))
@@ -163,4 +202,7 @@ class Ui_MainWindow(object):
         self.findButton.setText(_translate("MainWindow", "Поиск"))
         self.selectAllButton.setText(_translate("MainWindow", "Выбрать всё"))
         self.closeButton.setText(_translate("MainWindow", "Закрыть"))
+        self.addList.setToolTip(_translate("MainWindow", "Сохранить список"))
+        self.addList.setText(_translate("MainWindow", "+"))
+        self.pushButton.setText(_translate("MainWindow", "Загрузить список"))
 

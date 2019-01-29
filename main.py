@@ -263,7 +263,7 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
         j = 0
 
         while j < numOfConv:
-            time.sleep(.100)
+            time.sleep(.200)
             try:
                 id = 2000000000+int(self.listWidget_2.item(j).statusTip())
                 #This is catch for message.send() limits of api
