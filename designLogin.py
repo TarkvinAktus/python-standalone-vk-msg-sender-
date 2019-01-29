@@ -27,13 +27,9 @@ class Ui_Login(object):
         Login.setFont(font)
         Login.setWhatsThis("")
         Login.setAutoFillBackground(False)
-        Login.setStyleSheet("\n"
-"\n"
-"QDialog{\n"
-"    background-color:#676DD7    \n"
-"}")
-        Login.setSizeGripEnabled(False)
-        Login.setModal(False)
+        Login.setStyleSheet("QWidget{background-color:#d7ecf4}")
+        #Login.setSizeGripEnabled(False)
+        #Login.setModal(False)
         self.pushButton = QtWidgets.QPushButton(Login)
         self.pushButton.setGeometry(QtCore.QRect(0, 190, 300, 55))
         palette = QtGui.QPalette()
@@ -111,11 +107,9 @@ class Ui_Login(object):
         self.pushButton.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
         self.pushButton.setAutoFillBackground(False)
         self.pushButton.setStyleSheet("QPushButton{\n"
-"    color:white;\n"
-"    background-color:#353BAE;    \n"
-"}\n"
+"    background-color:#5d9700;border:none} QPushButton:focus{outline: none;}\n}\n"
 "QPushButton:hover{\n"
-"    background-color:#3e44b7;    \n"
+"    background-color:#436d00;    \n"
 "}")
         self.pushButton.setAutoDefault(False)
         self.pushButton.setFlat(False)
@@ -127,7 +121,7 @@ class Ui_Login(object):
         font.setPointSize(11)
         self.lineEdit.setFont(font)
         self.lineEdit.setStyleSheet("QLineEdit{\n"
-"    border:none;\n"
+"    border:none;background-color:white;\n"
 "}")
         self.lineEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.lineEdit.setObjectName("lineEdit")
@@ -138,7 +132,7 @@ class Ui_Login(object):
         font.setPointSize(11)
         self.lineEdit_2.setFont(font)
         self.lineEdit_2.setStyleSheet("QLineEdit{\n"
-"    border:none\n"
+"    border:none;\nbackground-color:white;"
 "}")
         self.lineEdit_2.setInputMethodHints(QtCore.Qt.ImhHiddenText|QtCore.Qt.ImhNoAutoUppercase|QtCore.Qt.ImhNoPredictiveText|QtCore.Qt.ImhSensitiveData)
         self.lineEdit_2.setEchoMode(QtWidgets.QLineEdit.Password)
@@ -152,7 +146,6 @@ class Ui_Login(object):
         font.setBold(False)
         font.setWeight(50)
         self.label.setFont(font)
-        self.label.setStyleSheet("QWidget{color:white;}")
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(Login)
@@ -167,8 +160,7 @@ class Ui_Login(object):
         font.setPointSize(14)
         font.setBold(False)
         font.setWeight(50)
-        self.label_2.setFont(font)
-        self.label_2.setStyleSheet("QWidget{color:white;}")
+        self.label_2.setFont(font)       
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
         self.closeButton = QtWidgets.QPushButton(Login)
@@ -183,13 +175,14 @@ class Ui_Login(object):
         self.closeButton.setAutoFillBackground(False)
         self.closeButton.setStyleSheet("QPushButton {    \n"
 "padding-bottom: 0.4em;\n"
-"background-color:#3F45B0;\n"
-"color:white\n"
+"background-color:#d2374a;\n"
+"color:white;\n"
+"border:none;\n"
 "}\n"
 "QPushButton:hover {\n"
 "padding-bottom: 0.4em;\n"
-"background-color:#3F4283;\n"
-"}")
+"background-color:#b22e3e;\n"
+"}QPushButton:focus{outline:none;}")
         self.closeButton.setAutoDefault(False)
         self.closeButton.setDefault(False)
         self.closeButton.setObjectName("closeButton")
@@ -204,4 +197,3 @@ class Ui_Login(object):
         self.label.setText(_translate("Login", "логин"))
         self.label_2.setText(_translate("Login", "пароль"))
         self.closeButton.setText(_translate("Login", "x"))
-

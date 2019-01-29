@@ -1,14 +1,22 @@
 import sys  # sys нужен для передачи argv в QApplication
 from PyQt5 import QtCore, QtWidgets, QtGui
-import design  # Это наш конвертированный файл дизайна
+
+# UI files
+import designMain
+import designLogin
+import error
+import d_find
+
+
 import vk_api
 import random
 import time
 import threading
 import asyncio
 import copy
+import json
 
-class ErrorMsg(QtWidgets.QMainWindow, design.Ui_Error):
+class ErrorMsg(QtWidgets.QMainWindow, error.Ui_Error):
 
     def __init__(self, mainform ,parent=None):
         super(ErrorMsg, self).__init__(parent)
@@ -24,7 +32,7 @@ class ErrorMsg(QtWidgets.QMainWindow, design.Ui_Error):
         y_w = self.offset.y()
         self.move(x-x_w, y-y_w)
 
-class Find(QtWidgets.QMainWindow, design.Ui_Find):
+class Find(QtWidgets.QMainWindow, d_find.Ui_Find):
 
     def __init__(self, mainform ,parent=None):
         super(Find, self).__init__(parent)
@@ -51,7 +59,7 @@ class Find(QtWidgets.QMainWindow, design.Ui_Find):
         y_w = self.offset.y()
         self.move(x-x_w, y-y_w)
 
-class Login(QtWidgets.QMainWindow, design.Ui_Login):
+class Login(QtWidgets.QMainWindow, designLogin.Ui_Login):
 
     def __init__(self, parent=None):
         super(Login, self).__init__(parent)
@@ -100,7 +108,7 @@ class Login(QtWidgets.QMainWindow, design.Ui_Login):
         
      
 
-class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
+class Main(QtWidgets.QMainWindow, designMain.Ui_MainWindow):
     
     def __init__(self, vk, parent=None):
         # Это здесь нужно для доступа к переменным, методам
@@ -108,11 +116,8 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
         super(Main,self).__init__(parent)
         self.req = "all"
         self.vk = vk
-        self.chat_array = []
+        self.chat_list = []
 
-        self.findWidget = Find(self) 
-        self.findWidget.setWindowFlags(QtCore.Qt.FramelessWindowHint)
-        
         try:
             self.setupUi(self)  # Это нужно для инициализации нашего дизайна
         except:
@@ -124,8 +129,9 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
         self.findButton.clicked.connect(self.findItem)
         self.closeButton.clicked.connect(self.close)
         self.selectAllButton.clicked.connect(self.selectAll)
+        self.addListButton.clicked.connect(self.addList)
         self.listWidget.itemDoubleClicked.connect(self.add)
-        self.listWidget_2.itemDoubleClicked.connect(self.delitem)
+        self.sendListWidget.itemDoubleClicked.connect(self.delitem)
 
         
 
@@ -133,10 +139,39 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
         t.daemon = True
         t.start()
 
-    
+        
+
+    def addListMenu(self):
+
+        self.addWidget = Find(self) 
+        self.addWidget.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+        self.addWidget.label.setText("Имя нового списка")
+        self.addWidget.pushButton.setText("Добавить")
+        self.addWidget.pushButton.clicked.connect(self.addList)
+        self.addWidget.show()
+
+    def addList(self):
+
+        jsonItems = []
+
+        currentItem = 0
+
+        saveList = self.sendListWidget
+
+        print(saveList.count())
+        while currentItem < saveList.count():
+                jsonItems.append([saveList.item(currentItem).text(), saveList.item(currentItem).statusTip()])
+                print(saveList.item(currentItem).text())
+                print(saveList.item(currentItem).statusTip())
+                currentItem = currentItem + 1           
+        
+        with open('saveList.json', 'w') as file:
+               json.dump(jsonItems, file, indent=2)
+
         
     def findItem(self):    
-        
+        self.findWidget = Find(self) 
+        self.findWidget.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         self.findWidget.show()
 
     def mousePressEvent(self, event):
@@ -151,12 +186,12 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
     def add(self):
         add = self.listWidget.currentItem()
         
-        self.listWidget_2.insertItem(0,add.text())
-        self.listWidget_2.item(0).setStatusTip(add.statusTip())
+        self.sendListWidget.insertItem(0,add.text())
+        self.sendListWidget.item(0).setStatusTip(add.statusTip())
     
     def delitem(self):
-        SelectedItem = self.listWidget_2.currentItem()
-        self.listWidget_2.takeItem(self.listWidget_2.row(SelectedItem))
+        SelectedItem = self.sendListWidget.currentItem()
+        self.sendListWidget.takeItem(self.sendListWidget.row(SelectedItem))
   
     def firstfindGrp(self):
         self.listWidget.clear()
@@ -190,7 +225,7 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
                         bufferListItem.setStatusTip(str(allConversations["items"][i]["conversation"]["peer"]["local_id"]))
 
                         self.listWidget.addItem(bufferListItem)
-                        self.chat_array.append([bufferListItem.text(),bufferListItem.statusTip()])
+                        self.chat_list.append([bufferListItem.text(),bufferListItem.statusTip()])
                         
                         counter = counter + 1
                         prev_fail = 0
@@ -208,16 +243,16 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
 
     def findGrp(self):
         counter = 0
-        self.listWidget_2.clear()
+        self.sendListWidget.clear()
         QtWidgets.QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
         
-        for i in range(len(self.chat_array)):
+        for i in range(len(self.chat_list)):
 
-            if self.chat_array[i][0].find(self.req) != -1:
+            if self.chat_list[i][0].find(self.req) != -1:
                 bufferListItem = QtWidgets.QListWidgetItem()    
-                bufferListItem.setText(self.chat_array[i][0])
-                bufferListItem.setStatusTip(self.chat_array[i][1])
-                self.listWidget_2.addItem(bufferListItem)
+                bufferListItem.setText(self.chat_list[i][0])
+                bufferListItem.setStatusTip(self.chat_list[i][1])
+                self.sendListWidget.addItem(bufferListItem)
 
                 counter = counter + 1
 
@@ -230,12 +265,12 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
             self.autherr.show()
 
     def selectAll(self):
-        self.listWidget_2.clear()
-        for i in range(len(self.chat_array)):           
+        self.sendListWidget.clear()
+        for i in range(len(self.chat_list)):           
             bufferListItem = QtWidgets.QListWidgetItem()    
-            bufferListItem.setText(self.chat_array[i][0])
-            bufferListItem.setStatusTip(self.chat_array[i][1])
-            self.listWidget_2.addItem(bufferListItem)
+            bufferListItem.setText(self.chat_list[i][0])
+            bufferListItem.setStatusTip(self.chat_list[i][1])
+            self.sendListWidget.addItem(bufferListItem)
         
 
 
@@ -257,7 +292,7 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
         self.textEdit.insertHtml(text)
         text = self.textEdit.toPlainText()
 
-        numOfConv = self.listWidget_2.count()
+        numOfConv = self.sendListWidget.count()
 
         
         j = 0
@@ -265,20 +300,20 @@ class Main(QtWidgets.QMainWindow, design.Ui_MainWindow):
         while j < numOfConv:
             time.sleep(.200)
             try:
-                id = 2000000000+int(self.listWidget_2.item(j).statusTip())
+                id = 2000000000+int(self.sendListWidget.item(j).statusTip())
                 #This is catch for message.send() limits of api
                 #if msg is not send we wait for 1 second and try again
                 try:
                     vk_get_api.messages.send(random_id=rand_id,peer_id=id,message=text)
                     rand_id = rand_id + 5
-                    print(self.listWidget_2.item(j).statusTip())
+                    print(self.sendListWidget.item(j).statusTip())
                     print(rand_id)
                 except:
                     time.sleep(1) 
             except:
                 time.sleep(1)   
             j = j + 1
-        self.listWidget_2.clear()
+        self.sendListWidget.clear()
 
         self.done_msg = ErrorMsg(self)  
         self.done_msg.setWindowFlags(QtCore.Qt.FramelessWindowHint)

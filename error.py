@@ -32,8 +32,8 @@ class Ui_Error(object):
 "    background-color:#d2374a;\n"
 "border:none;\n"
 "}")
-        Error.setSizeGripEnabled(False)
-        Error.setModal(False)
+        #Error.setSizeGripEnabled(False)
+        #Error.setModal(False)
         self.closeButton = QtWidgets.QPushButton(Error)
         self.closeButton.setGeometry(QtCore.QRect(0, 70, 200, 50))
         font = QtGui.QFont()

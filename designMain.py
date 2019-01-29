@@ -13,7 +13,7 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setWindowModality(QtCore.Qt.NonModal)
         MainWindow.setEnabled(True)
-        MainWindow.resize(930, 675)
+        MainWindow.resize(930, 624)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -84,13 +84,13 @@ class Ui_MainWindow(object):
         self.listWidget.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
         self.listWidget.setVerticalScrollMode(QtWidgets.QAbstractItemView.ScrollPerItem)
         self.listWidget.setObjectName("listWidget")
-        self.listWidget_2 = QtWidgets.QListWidget(self.centralwidget)
-        self.listWidget_2.setGeometry(QtCore.QRect(470, 240, 450, 340))
+        self.sendListWidget = QtWidgets.QListWidget(self.centralwidget)
+        self.sendListWidget.setGeometry(QtCore.QRect(470, 240, 450, 341))
         font = QtGui.QFont()
         font.setFamily("Verdana")
         font.setPointSize(10)
-        self.listWidget_2.setFont(font)
-        self.listWidget_2.setStyleSheet("QListWidget{\n"
+        self.sendListWidget.setFont(font)
+        self.sendListWidget.setStyleSheet("QListWidget{\n"
 "    border:none;\n"
 "    background-color:white;\n"
 "}\n"
@@ -104,8 +104,8 @@ class Ui_MainWindow(object):
 "border:none;background-color:#acd8e8;}\n"
 "QScrollBar:horizontal {border: none;\n"
 "background-color: white;}")
-        self.listWidget_2.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
-        self.listWidget_2.setObjectName("listWidget_2")
+        self.sendListWidget.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
+        self.sendListWidget.setObjectName("sendListWidget")
         self.findButton = QtWidgets.QPushButton(self.centralwidget)
         self.findButton.setGeometry(QtCore.QRect(600, 130, 320, 50))
         font = QtGui.QFont()
@@ -149,39 +149,39 @@ class Ui_MainWindow(object):
 "background-color:#b22e3e;\n"
 "}")
         self.closeButton.setObjectName("closeButton")
-        self.addList = QtWidgets.QPushButton(self.centralwidget)
-        self.addList.setGeometry(QtCore.QRect(660, 590, 40, 40))
+        self.addListButton = QtWidgets.QPushButton(self.centralwidget)
+        self.addListButton.setGeometry(QtCore.QRect(670, 540, 40, 40))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.addList.sizePolicy().hasHeightForWidth())
-        self.addList.setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(self.addListButton.sizePolicy().hasHeightForWidth())
+        self.addListButton.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setFamily("Verdana")
         font.setPointSize(14)
-        self.addList.setFont(font)
-        self.addList.setStyleSheet("QPushButton{\n"
+        self.addListButton.setFont(font)
+        self.addListButton.setStyleSheet("QPushButton{\n"
 "    background-color:white;\n"
 "border:none;\n"
 "}\n"
 "QPushButton:hover{\n"
 "    background-color:#f2f6fc;\n"
 "}")
-        self.addList.setObjectName("addList")
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(710, 590, 211, 40))
+        self.addListButton.setObjectName("addListButton")
+        self.LoadListsButton = QtWidgets.QPushButton(self.centralwidget)
+        self.LoadListsButton.setGeometry(QtCore.QRect(710, 540, 211, 40))
         font = QtGui.QFont()
         font.setFamily("Verdana")
         font.setPointSize(14)
-        self.pushButton.setFont(font)
-        self.pushButton.setStyleSheet("QPushButton{\n"
+        self.LoadListsButton.setFont(font)
+        self.LoadListsButton.setStyleSheet("QPushButton{\n"
 "    background-color:white;\n"
 "border:none;\n"
 "}\n"
 "QPushButton:hover{\n"
 "    background-color:#f2f6fc;\n"
 "}")
-        self.pushButton.setObjectName("pushButton")
+        self.LoadListsButton.setObjectName("LoadListsButton")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 930, 21))
@@ -202,7 +202,7 @@ class Ui_MainWindow(object):
         self.findButton.setText(_translate("MainWindow", "Поиск"))
         self.selectAllButton.setText(_translate("MainWindow", "Выбрать всё"))
         self.closeButton.setText(_translate("MainWindow", "Закрыть"))
-        self.addList.setToolTip(_translate("MainWindow", "Сохранить список"))
-        self.addList.setText(_translate("MainWindow", "+"))
-        self.pushButton.setText(_translate("MainWindow", "Загрузить список"))
+        self.addListButton.setToolTip(_translate("MainWindow", "Сохранить список"))
+        self.addListButton.setText(_translate("MainWindow", "+"))
+        self.LoadListsButton.setText(_translate("MainWindow", "Загрузить список"))
 
