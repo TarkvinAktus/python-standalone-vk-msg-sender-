@@ -153,20 +153,20 @@ class Ui_MainWindow(object):
 "    background-color:#f2f6fc;\n"
 "}")
         self.addListButton.setObjectName("addListButton")
-        self.LoadListsButton = QtWidgets.QPushButton(self.centralwidget)
-        self.LoadListsButton.setGeometry(QtCore.QRect(600, 40, 321, 51))
+        self.loadListsButton = QtWidgets.QPushButton(self.centralwidget)
+        self.loadListsButton.setGeometry(QtCore.QRect(600, 40, 321, 51))
         font = QtGui.QFont()
         font.setFamily("Verdana")
         font.setPointSize(14)
-        self.LoadListsButton.setFont(font)
-        self.LoadListsButton.setStyleSheet("QPushButton{\n"
+        self.loadListsButton.setFont(font)
+        self.loadListsButton.setStyleSheet("QPushButton{\n"
 "    background-color:white;\n"
 "border:none;\n"
 "}\n"
 "QPushButton:hover{\n"
 "    background-color:#f2f6fc;\n"
 "}")
-        self.LoadListsButton.setObjectName("LoadListsButton")
+        self.loadListsButton.setObjectName("loadListsButton")
         self.rollButton = QtWidgets.QPushButton(self.centralwidget)
         self.rollButton.setGeometry(QtCore.QRect(850, 0, 40, 40))
         font = QtGui.QFont()
@@ -239,7 +239,7 @@ class Ui_MainWindow(object):
         self.selectAllButton.setText(_translate("MainWindow", "Выбрать всё"))
         self.addListButton.setToolTip(_translate("MainWindow", "Сохранить список"))
         self.addListButton.setText(_translate("MainWindow", "+"))
-        self.LoadListsButton.setText(_translate("MainWindow", "Загрузить список"))
+        self.loadListsButton.setText(_translate("MainWindow", "Загрузить список"))
         self.rollButton.setText(_translate("MainWindow", "-"))
         self.closeButton.setText(_translate("MainWindow", "x"))
 

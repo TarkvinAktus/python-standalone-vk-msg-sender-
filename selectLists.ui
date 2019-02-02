@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Find</class>
- <widget class="QDialog" name="Find">
+ <class>ListsSelect</class>
+ <widget class="QDialog" name="ListsSelect">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -314,15 +314,32 @@ QPushButton:focus{outline: none;}</string>
      <height>351</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Verdana</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
    <property name="styleSheet">
-    <string notr="true">border:none;</string>
+    <string notr="true">
+QListWidget{
+    background-color:white;
+}
+QScrollBar:vertical {border: none;
+background-color: white;}
+QScrollBar::handle:vertical {
+border:none;background-color:#acd8e8;}
+QScrollBar:horizontal {border: none;
+background-color: white;}
+QScrollBar::handle:horizontall {
+border:none;background-color:#acd8e8;}</string>
    </property>
   </widget>
   <widget class="QPushButton" name="closeButton">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>0</y>
+     <x>259</x>
+     <y>1</y>
      <width>40</width>
      <height>40</height>
     </rect>

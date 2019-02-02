@@ -278,7 +278,7 @@ QPushButton:hover{
      <string>+</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="LoadListsButton">
+   <widget class="QPushButton" name="loadListsButton">
     <property name="geometry">
      <rect>
       <x>600</x>

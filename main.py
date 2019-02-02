@@ -1,10 +1,12 @@
 import sys  # sys нужен для передачи argv в QApplication
+import os
 from PyQt5 import QtCore, QtWidgets, QtGui
 
 # UI files
 import designMain
 import designLogin
 import error
+import designSelect
 import d_find
 
 
@@ -13,8 +15,48 @@ import random
 import time
 import threading
 import asyncio
-import copy
 import json
+
+class ListsSelect(QtWidgets.QMainWindow, designSelect.Ui_ListsSelect):
+
+    def __init__(self, mainform ,parent=None):
+        super(ListsSelect, self).__init__(parent)
+        self.setupUi(self)
+        self.mainform = mainform
+        self.closeButton.clicked.connect(self.close)
+        self.pushButton.clicked.connect(self.addList)
+
+
+        allLists = os.listdir(path=".") 
+        print(os.listdir(path="."))
+
+        for b_list in range(len(allLists)):
+            if allLists[b_list].find(".json") != -1 and allLists[b_list].find("vk_config.v2") == -1:
+                self.listWidget.addItem(allLists[b_list])
+    
+    def addList(self,mainform):
+        add = self.listWidget.currentItem()
+        add_text = add.text()
+        with open(add_text, "r") as read_file:
+            data = json.load(read_file)
+
+        for chat in range(len(data)):
+            bufferListItem = QtWidgets.QListWidgetItem()    
+            bufferListItem.setText(data[chat][0])
+            bufferListItem.setStatusTip(data[chat][1])
+            self.mainform.sendListWidget.addItem(bufferListItem)
+                
+        print(data)
+
+ 
+    def mousePressEvent(self, event):
+        self.offset = event.pos()
+    def mouseMoveEvent(self, event):
+        x=event.globalX()
+        y=event.globalY()
+        x_w = self.offset.x()
+        y_w = self.offset.y()
+        self.move(x-x_w, y-y_w)
 
 class ErrorMsg(QtWidgets.QMainWindow, error.Ui_Error):
 
@@ -132,6 +174,7 @@ class Main(QtWidgets.QMainWindow, designMain.Ui_MainWindow):
         self.rollButton.clicked.connect(self.showMinimized)
         self.selectAllButton.clicked.connect(self.selectAll)
         self.addListButton.clicked.connect(self.addListMenu)
+        self.loadListsButton.clicked.connect(self.loadListsMenu)
         self.listWidget.itemDoubleClicked.connect(self.add)
         self.sendListWidget.itemDoubleClicked.connect(self.delitem)
 
@@ -141,7 +184,10 @@ class Main(QtWidgets.QMainWindow, designMain.Ui_MainWindow):
         t.daemon = True
         t.start()
 
-        
+    def loadListsMenu(self):
+        self.loadList = ListsSelect(self,self)  
+        self.loadList.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+        self.loadList.show()
 
     def addListMenu(self):
 

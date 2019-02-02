@@ -82,3 +82,4 @@ class Ui_Error(object):
         self.closeButton.setText(_translate("Error", "OK"))
         self.label.setText(_translate("Error", "Ошибка ввода"))
 
+

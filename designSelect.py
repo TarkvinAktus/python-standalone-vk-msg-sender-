@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'selectLists.ui'
+# Form implementation generated from reading ui file 'SelectLists.ui'
 #
 # Created by: PyQt5 UI code generator 5.11.3
 #
@@ -8,32 +8,32 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_Find(object):
-    def setupUi(self, Find):
-        Find.setObjectName("Find")
-        Find.resize(300, 400)
+class Ui_ListsSelect(object):
+    def setupUi(self, ListsSelect):
+        ListsSelect.setObjectName("ListsSelect")
+        ListsSelect.resize(300, 400)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(Find.sizePolicy().hasHeightForWidth())
-        Find.setSizePolicy(sizePolicy)
-        Find.setMinimumSize(QtCore.QSize(300, 400))
-        Find.setMaximumSize(QtCore.QSize(300, 400))
+        sizePolicy.setHeightForWidth(ListsSelect.sizePolicy().hasHeightForWidth())
+        ListsSelect.setSizePolicy(sizePolicy)
+        ListsSelect.setMinimumSize(QtCore.QSize(300, 400))
+        ListsSelect.setMaximumSize(QtCore.QSize(300, 400))
         font = QtGui.QFont()
         font.setFamily("Verdana")
         font.setPointSize(10)
         font.setBold(False)
         font.setWeight(50)
-        Find.setFont(font)
-        Find.setWindowTitle("")
-        Find.setWhatsThis("")
-        Find.setAutoFillBackground(False)
-        Find.setStyleSheet("QDialog{\n"
+        ListsSelect.setFont(font)
+        ListsSelect.setWindowTitle("")
+        ListsSelect.setWhatsThis("")
+        ListsSelect.setAutoFillBackground(False)
+        ListsSelect.setStyleSheet("QDialog{\n"
 "    background-color:#d7ecf4;\n"
 "}")
-        #Find.setSizeGripEnabled(False)
-        #Find.setModal(False)
-        self.pushButton = QtWidgets.QPushButton(Find)
+        #ListsSelect.setSizeGripEnabled(False)
+        #ListsSelect.setModal(False)
+        self.pushButton = QtWidgets.QPushButton(ListsSelect)
         self.pushButton.setGeometry(QtCore.QRect(0, 345, 300, 55))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
@@ -122,12 +122,27 @@ class Ui_Find(object):
         self.pushButton.setDefault(True)
         self.pushButton.setFlat(False)
         self.pushButton.setObjectName("pushButton")
-        self.listWidget = QtWidgets.QListWidget(Find)
+        self.listWidget = QtWidgets.QListWidget(ListsSelect)
         self.listWidget.setGeometry(QtCore.QRect(0, 0, 300, 351))
-        self.listWidget.setStyleSheet("border:none;")
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setPointSize(10)
+        self.listWidget.setFont(font)
+        self.listWidget.setStyleSheet("\n"
+"QListWidget{\n"
+"    background-color:white;\n"
+"}\n"
+"QScrollBar:vertical {border: none;\n"
+"background-color: white;}\n"
+"QScrollBar::handle:vertical {\n"
+"border:none;background-color:#acd8e8;}\n"
+"QScrollBar:horizontal {border: none;\n"
+"background-color: white;}\n"
+"QScrollBar::handle:horizontall {\n"
+"border:none;background-color:#acd8e8;}")
         self.listWidget.setObjectName("listWidget")
-        self.closeButton = QtWidgets.QPushButton(Find)
-        self.closeButton.setGeometry(QtCore.QRect(260, 0, 40, 40))
+        self.closeButton = QtWidgets.QPushButton(ListsSelect)
+        self.closeButton.setGeometry(QtCore.QRect(259, 1, 40, 40))
         font = QtGui.QFont()
         font.setFamily("Verdana")
         font.setPointSize(16)
@@ -153,11 +168,11 @@ class Ui_Find(object):
         self.closeButton.setDefault(False)
         self.closeButton.setObjectName("closeButton")
 
-        self.retranslateUi(Find)
-        QtCore.QMetaObject.connectSlotsByName(Find)
+        self.retranslateUi(ListsSelect)
+        QtCore.QMetaObject.connectSlotsByName(ListsSelect)
 
-    def retranslateUi(self, Find):
+    def retranslateUi(self, ListsSelect):
         _translate = QtCore.QCoreApplication.translate
-        self.pushButton.setText(_translate("Find", "Выбрать"))
-        self.closeButton.setText(_translate("Find", "x"))
+        self.pushButton.setText(_translate("ListsSelect", "Выбрать"))
+        self.closeButton.setText(_translate("ListsSelect", "x"))
 
