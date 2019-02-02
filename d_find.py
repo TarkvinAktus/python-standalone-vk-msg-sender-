@@ -29,7 +29,7 @@ class Ui_Find(object):
         Find.setWhatsThis("")
         Find.setAutoFillBackground(False)
         Find.setStyleSheet("QWidget{\n"
-"    background-color:#d7ecf4\n"
+"    background-color:#d7ecf4;\n"
 "}")
         #Find.setSizeGripEnabled(False)
         #Find.setModal(False)
@@ -133,6 +133,7 @@ class Ui_Find(object):
 "    background-color:white;\n"
 "}")
         self.lineEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.lineEdit.setPlaceholderText("")
         self.lineEdit.setObjectName("lineEdit")
         self.label = QtWidgets.QLabel(Find)
         self.label.setGeometry(QtCore.QRect(0, 39, 300, 30))
@@ -157,13 +158,13 @@ class Ui_Find(object):
         self.closeButton.setAutoFillBackground(False)
         self.closeButton.setStyleSheet("QPushButton {    \n"
 "padding-bottom: 0.4em;\n"
-"background-color:#d2374a;\n"
-"color:white;\n"
+"background-color:#d7ecf4;\n"
 "border:none;    \n"
 "}\n"
 "QPushButton:hover {\n"
 "padding-bottom: 0.4em;\n"
-"background-color:#b22e3e;\n"
+"background-color:#d2374a;\n"
+"color:white;\n"
 "}\n"
 "QPushButton:focus {\n"
 "outline:none;\n"

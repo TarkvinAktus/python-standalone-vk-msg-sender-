@@ -117,6 +117,7 @@ class Main(QtWidgets.QMainWindow, designMain.Ui_MainWindow):
         self.req = "all"
         self.vk = vk
         self.chat_list = []
+    
 
         try:
             self.setupUi(self)  # Это нужно для инициализации нашего дизайна
@@ -128,8 +129,9 @@ class Main(QtWidgets.QMainWindow, designMain.Ui_MainWindow):
         self.sendButton.clicked.connect(self.sendMsg)
         self.findButton.clicked.connect(self.findItem)
         self.closeButton.clicked.connect(self.close)
+        self.rollButton.clicked.connect(self.showMinimized)
         self.selectAllButton.clicked.connect(self.selectAll)
-        self.addListButton.clicked.connect(self.addList)
+        self.addListButton.clicked.connect(self.addListMenu)
         self.listWidget.itemDoubleClicked.connect(self.add)
         self.sendListWidget.itemDoubleClicked.connect(self.delitem)
 
@@ -147,11 +149,13 @@ class Main(QtWidgets.QMainWindow, designMain.Ui_MainWindow):
         self.addWidget.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         self.addWidget.label.setText("Имя нового списка")
         self.addWidget.pushButton.setText("Добавить")
+        self.addWidget.pushButton.clicked.disconnect()
         self.addWidget.pushButton.clicked.connect(self.addList)
+        self.addWidget.pushButton.clicked.connect(self.addWidget.close)
         self.addWidget.show()
 
     def addList(self):
-
+        
         jsonItems = []
 
         currentItem = 0
@@ -165,8 +169,23 @@ class Main(QtWidgets.QMainWindow, designMain.Ui_MainWindow):
                 print(saveList.item(currentItem).statusTip())
                 currentItem = currentItem + 1           
         
-        with open('saveList.json', 'w') as file:
+        savename = self.addWidget.lineEdit.text()+'.json'
+
+        with open(savename, 'w') as file:
                json.dump(jsonItems, file, indent=2)
+
+        self.sendListWidget.clear()
+
+        self.done_msg = ErrorMsg(self)  
+        self.done_msg.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+        self.done_msg.label.setText("Готово")
+        self.done_msg.label.setStyleSheet("QLabel{\n"
+"color:black;\n"
+"}")
+        self.done_msg.setStyleSheet("QWidget{background-color:#d7ecf4;border:none;}")
+        self.done_msg.closeButton.setStyleSheet("QPushButton{background-color:#5d9700;color:white;}QPushButton:hover{background-color:#436d00;}")
+        self.done_msg.show()
+
 
         
     def findItem(self):    

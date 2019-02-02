@@ -447,13 +447,13 @@ QPushButton:focus{outline: none;}</string>
    <property name="styleSheet">
     <string notr="true">QPushButton {	
 padding-bottom: 0.4em;
-background-color:#d2374a;
-color:white;
+background-color:#d7ecf4;
 border:none;	
 }
 QPushButton:hover {
 padding-bottom: 0.4em;
-background-color:#b22e3e;
+background-color:#d2374a;
+color:white;
 }
 QPushButton:focus {
 outline:none;
