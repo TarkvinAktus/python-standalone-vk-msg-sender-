@@ -309,7 +309,7 @@ QPushButton:hover{
    <widget class="QPushButton" name="rollButton">
     <property name="geometry">
      <rect>
-      <x>850</x>
+      <x>840</x>
       <y>0</y>
       <width>40</width>
       <height>40</height>
@@ -356,7 +356,7 @@ outline:none;
    <widget class="QPushButton" name="closeButton">
     <property name="geometry">
      <rect>
-      <x>890</x>
+      <x>880</x>
       <y>0</y>
       <width>40</width>
       <height>40</height>

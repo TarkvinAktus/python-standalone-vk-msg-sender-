@@ -17,6 +17,8 @@ import threading
 import asyncio
 import json
 
+
+
 class ListsSelect(QtWidgets.QMainWindow, designSelect.Ui_ListsSelect):
 
     def __init__(self, mainform ,parent=None):
@@ -28,11 +30,12 @@ class ListsSelect(QtWidgets.QMainWindow, designSelect.Ui_ListsSelect):
 
 
         allLists = os.listdir(path=".") 
-        print(os.listdir(path="."))
+        self.numOfLists = 0
 
         for b_list in range(len(allLists)):
             if allLists[b_list].find(".json") != -1 and allLists[b_list].find("vk_config.v2") == -1:
                 self.listWidget.addItem(allLists[b_list])
+                self.numOfLists = self.numOfLists + 1
     
     def addList(self,mainform):
         add = self.listWidget.currentItem()
@@ -45,8 +48,8 @@ class ListsSelect(QtWidgets.QMainWindow, designSelect.Ui_ListsSelect):
             bufferListItem.setText(data[chat][0])
             bufferListItem.setStatusTip(data[chat][1])
             self.mainform.sendListWidget.addItem(bufferListItem)
-                
-        print(data)
+
+        self.close()
 
  
     def mousePressEvent(self, event):
@@ -177,6 +180,7 @@ class Main(QtWidgets.QMainWindow, designMain.Ui_MainWindow):
         self.loadListsButton.clicked.connect(self.loadListsMenu)
         self.listWidget.itemDoubleClicked.connect(self.add)
         self.sendListWidget.itemDoubleClicked.connect(self.delitem)
+        #self.textEdit.textChanged.connect(self.textToUTF8)
 
         
 
@@ -184,8 +188,20 @@ class Main(QtWidgets.QMainWindow, designMain.Ui_MainWindow):
         t.daemon = True
         t.start()
 
+    #def textToUTF8(self):
+
+        #self.textEdit.setText(self.textEdit.toPlainText().encode("utf-8").decode('cp1252'))
+        #convert to unicode
+        #teststring = self.textEdit.toPlainText().encode("unicode_escape")
+        #teststring = self.textEdit.toHtml()
+        #teststring = QtGui.QTextDocumentFragment.fromHtml(teststring)
+        #encode it with string escape
+        #teststring = teststring.encode('unicode_escape')
+        #print(teststring)
+
+
     def loadListsMenu(self):
-        self.loadList = ListsSelect(self,self)  
+        self.loadList = ListsSelect(self)  
         self.loadList.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         self.loadList.show()
 
