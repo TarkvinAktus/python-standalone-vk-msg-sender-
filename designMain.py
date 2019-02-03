@@ -144,7 +144,7 @@ class Ui_MainWindow(object):
 "}")
         self.selectAllButton.setObjectName("selectAllButton")
         self.addListButton = QtWidgets.QPushButton(self.centralwidget)
-        self.addListButton.setGeometry(QtCore.QRect(880, 340, 40, 40))
+        self.addListButton.setGeometry(QtCore.QRect(880, 348, 40, 40))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
