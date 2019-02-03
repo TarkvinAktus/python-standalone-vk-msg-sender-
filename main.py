@@ -34,12 +34,13 @@ class ListsSelect(QtWidgets.QMainWindow, designSelect.Ui_ListsSelect):
 
         for b_list in range(len(allLists)):
             if allLists[b_list].find(".json") != -1 and allLists[b_list].find("vk_config.v2") == -1:
-                self.listWidget.addItem(allLists[b_list])
+                self.myList = allLists[b_list].replace(".json","")
+                self.listWidget.addItem(self.myList)
                 self.numOfLists = self.numOfLists + 1
     
     def addList(self,mainform):
         add = self.listWidget.currentItem()
-        add_text = add.text()
+        add_text = add.text() + ".json"
         with open(add_text, "r") as read_file:
             data = json.load(read_file)
 

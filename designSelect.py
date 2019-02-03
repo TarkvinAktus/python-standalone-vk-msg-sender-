@@ -151,7 +151,7 @@ class Ui_ListsSelect(object):
         self.listWidget.setLineWidth(0)
         self.listWidget.setObjectName("listWidget")
         self.closeButton = QtWidgets.QPushButton(ListsSelect)
-        self.closeButton.setGeometry(QtCore.QRect(259, 1, 40, 40))
+        self.closeButton.setGeometry(QtCore.QRect(260, 1, 39, 40))
         font = QtGui.QFont()
         font.setFamily("Verdana")
         font.setPointSize(16)
