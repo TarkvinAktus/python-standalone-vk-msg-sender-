@@ -13,7 +13,7 @@
     <x>0</x>
     <y>0</y>
     <width>930</width>
-    <height>631</height>
+    <height>600</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -44,14 +44,23 @@
    <string notr="true">QWidget{
 	background-color:#d7ecf4;
 	border:none;outline: none;
+}
+QWidget::layout{
+	margin:0px;	
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <widget class="QPushButton" name="sendButton">
     <property name="geometry">
      <rect>
       <x>600</x>
-      <y>190</y>
+      <y>540</y>
       <width>320</width>
       <height>50</height>
      </rect>
@@ -84,8 +93,8 @@ QPushButton:focus{outline: none;}</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>40</y>
-      <width>580</width>
+      <y>390</y>
+      <width>588</width>
       <height>200</height>
      </rect>
     </property>
@@ -111,9 +120,9 @@ QPushButton:focus{outline: none;}</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>250</y>
-      <width>450</width>
-      <height>340</height>
+      <y>40</y>
+      <width>454</width>
+      <height>348</height>
      </rect>
     </property>
     <property name="font">
@@ -123,7 +132,8 @@ QPushButton:focus{outline: none;}</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">QListWidget{
+     <string notr="true">QListWidget::item { margin: 0.2em;}
+QListWidget{
 	border:none;
 	background-color:white;
 }
@@ -146,17 +156,29 @@ border:none;background-color:#acd8e8;}</string>
     <property name="selectionMode">
      <enum>QAbstractItemView::SingleSelection</enum>
     </property>
+    <property name="iconSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
     <property name="verticalScrollMode">
      <enum>QAbstractItemView::ScrollPerItem</enum>
+    </property>
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="batchSize">
+     <number>100</number>
     </property>
    </widget>
    <widget class="QListWidget" name="sendListWidget">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>250</y>
-      <width>450</width>
-      <height>340</height>
+      <x>466</x>
+      <y>40</y>
+      <width>454</width>
+      <height>348</height>
      </rect>
     </property>
     <property name="font">
@@ -166,7 +188,8 @@ border:none;background-color:#acd8e8;}</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">QListWidget{
+     <string notr="true">QListWidget::item { margin: 0.2em;}
+QListWidget{
 	border:none;
 	background-color:white;
 }
@@ -189,7 +212,7 @@ background-color: white;}</string>
     <property name="geometry">
      <rect>
       <x>600</x>
-      <y>140</y>
+      <y>490</y>
       <width>320</width>
       <height>50</height>
      </rect>
@@ -217,7 +240,7 @@ QPushButton:hover{
     <property name="geometry">
      <rect>
       <x>600</x>
-      <y>90</y>
+      <y>440</y>
       <width>320</width>
       <height>50</height>
      </rect>
@@ -245,7 +268,7 @@ QPushButton:hover{
     <property name="geometry">
      <rect>
       <x>880</x>
-      <y>550</y>
+      <y>340</y>
       <width>40</width>
       <height>40</height>
      </rect>
@@ -282,7 +305,7 @@ QPushButton:hover{
     <property name="geometry">
      <rect>
       <x>600</x>
-      <y>40</y>
+      <y>390</y>
       <width>321</width>
       <height>51</height>
      </rect>
@@ -402,17 +425,6 @@ outline:none;
     </property>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>930</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

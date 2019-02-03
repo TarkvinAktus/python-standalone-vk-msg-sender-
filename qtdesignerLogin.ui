@@ -308,9 +308,9 @@ QPushButton:focus{outline: none;}</string>
   <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>40</x>
      <y>70</y>
-     <width>200</width>
+     <width>220</width>
      <height>30</height>
     </rect>
    </property>
@@ -333,9 +333,9 @@ QPushButton:focus{outline: none;}</string>
   <widget class="QLineEdit" name="lineEdit_2">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>40</x>
      <y>133</y>
-     <width>200</width>
+     <width>220</width>
      <height>30</height>
     </rect>
    </property>

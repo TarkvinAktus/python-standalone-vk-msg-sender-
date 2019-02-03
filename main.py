@@ -189,7 +189,7 @@ class Main(QtWidgets.QMainWindow, designMain.Ui_MainWindow):
         t.start()
 
     #def textToUTF8(self):
-
+        #i don't know how to fix this problem yet
         #self.textEdit.setText(self.textEdit.toPlainText().encode("utf-8").decode('cp1252'))
         #convert to unicode
         #teststring = self.textEdit.toPlainText().encode("unicode_escape")
@@ -413,6 +413,8 @@ def main():
 
     window = Login()  # Создаём объект класса Login
     window.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+    effect = QtWidgets.QGraphicsDropShadowEffect(blurRadius=5, xOffset=3, yOffset=3)
+    window.setGraphicsEffect(effect)
     window.show()  # Показываем окно
     app.exec_()  # и запускаем приложение
 

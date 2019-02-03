@@ -13,7 +13,7 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setWindowModality(QtCore.Qt.NonModal)
         MainWindow.setEnabled(True)
-        MainWindow.resize(930, 631)
+        MainWindow.resize(930, 600)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -25,11 +25,16 @@ class Ui_MainWindow(object):
         MainWindow.setStyleSheet("QWidget{\n"
 "    background-color:#d7ecf4;\n"
 "    border:none;outline: none;\n"
+"}\n"
+"QWidget::layout{\n"
+"    margin:0px;    \n"
 "}")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setEnabled(True)
+        self.centralwidget.setStyleSheet("")
         self.centralwidget.setObjectName("centralwidget")
         self.sendButton = QtWidgets.QPushButton(self.centralwidget)
-        self.sendButton.setGeometry(QtCore.QRect(600, 190, 320, 50))
+        self.sendButton.setGeometry(QtCore.QRect(600, 540, 320, 50))
         font = QtGui.QFont()
         font.setFamily("Verdana")
         font.setPointSize(14)
@@ -46,7 +51,7 @@ class Ui_MainWindow(object):
         self.sendButton.setAutoDefault(False)
         self.sendButton.setObjectName("sendButton")
         self.textEdit = QtWidgets.QTextEdit(self.centralwidget)
-        self.textEdit.setGeometry(QtCore.QRect(10, 40, 580, 200))
+        self.textEdit.setGeometry(QtCore.QRect(10, 390, 588, 200))
         font = QtGui.QFont()
         font.setFamily("Verdana")
         font.setPointSize(10)
@@ -59,12 +64,13 @@ class Ui_MainWindow(object):
 "}")
         self.textEdit.setObjectName("textEdit")
         self.listWidget = QtWidgets.QListWidget(self.centralwidget)
-        self.listWidget.setGeometry(QtCore.QRect(10, 250, 450, 340))
+        self.listWidget.setGeometry(QtCore.QRect(10, 40, 454, 348))
         font = QtGui.QFont()
         font.setFamily("Verdana")
         font.setPointSize(10)
         self.listWidget.setFont(font)
-        self.listWidget.setStyleSheet("QListWidget{\n"
+        self.listWidget.setStyleSheet("QListWidget::item { margin: 0.2em;}\n"
+"QListWidget{\n"
 "    border:none;\n"
 "    background-color:white;\n"
 "}\n"
@@ -82,15 +88,18 @@ class Ui_MainWindow(object):
 "border:none;background-color:#acd8e8;}")
         self.listWidget.setAutoScroll(True)
         self.listWidget.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
+        self.listWidget.setIconSize(QtCore.QSize(0, 0))
         self.listWidget.setVerticalScrollMode(QtWidgets.QAbstractItemView.ScrollPerItem)
+        self.listWidget.setBatchSize(100)
         self.listWidget.setObjectName("listWidget")
         self.sendListWidget = QtWidgets.QListWidget(self.centralwidget)
-        self.sendListWidget.setGeometry(QtCore.QRect(470, 250, 450, 340))
+        self.sendListWidget.setGeometry(QtCore.QRect(466, 40, 454, 348))
         font = QtGui.QFont()
         font.setFamily("Verdana")
         font.setPointSize(10)
         self.sendListWidget.setFont(font)
-        self.sendListWidget.setStyleSheet("QListWidget{\n"
+        self.sendListWidget.setStyleSheet("QListWidget::item { margin: 0.2em;}\n"
+"QListWidget{\n"
 "    border:none;\n"
 "    background-color:white;\n"
 "}\n"
@@ -107,7 +116,7 @@ class Ui_MainWindow(object):
         self.sendListWidget.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
         self.sendListWidget.setObjectName("sendListWidget")
         self.findButton = QtWidgets.QPushButton(self.centralwidget)
-        self.findButton.setGeometry(QtCore.QRect(600, 140, 320, 50))
+        self.findButton.setGeometry(QtCore.QRect(600, 490, 320, 50))
         font = QtGui.QFont()
         font.setFamily("Verdana")
         font.setPointSize(14)
@@ -121,7 +130,7 @@ class Ui_MainWindow(object):
 "}")
         self.findButton.setObjectName("findButton")
         self.selectAllButton = QtWidgets.QPushButton(self.centralwidget)
-        self.selectAllButton.setGeometry(QtCore.QRect(600, 90, 320, 50))
+        self.selectAllButton.setGeometry(QtCore.QRect(600, 440, 320, 50))
         font = QtGui.QFont()
         font.setFamily("Verdana")
         font.setPointSize(14)
@@ -135,7 +144,7 @@ class Ui_MainWindow(object):
 "}")
         self.selectAllButton.setObjectName("selectAllButton")
         self.addListButton = QtWidgets.QPushButton(self.centralwidget)
-        self.addListButton.setGeometry(QtCore.QRect(880, 550, 40, 40))
+        self.addListButton.setGeometry(QtCore.QRect(880, 340, 40, 40))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -154,7 +163,7 @@ class Ui_MainWindow(object):
 "}")
         self.addListButton.setObjectName("addListButton")
         self.loadListsButton = QtWidgets.QPushButton(self.centralwidget)
-        self.loadListsButton.setGeometry(QtCore.QRect(600, 40, 321, 51))
+        self.loadListsButton.setGeometry(QtCore.QRect(600, 390, 321, 51))
         font = QtGui.QFont()
         font.setFamily("Verdana")
         font.setPointSize(14)
@@ -219,13 +228,6 @@ class Ui_MainWindow(object):
         self.closeButton.setDefault(False)
         self.closeButton.setObjectName("closeButton")
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 930, 21))
-        self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)

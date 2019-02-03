@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'SelectLists.ui'
+# Form implementation generated from reading ui file 'selectLists.ui'
 #
 # Created by: PyQt5 UI code generator 5.11.3
 #
@@ -28,8 +28,10 @@ class Ui_ListsSelect(object):
         ListsSelect.setWindowTitle("")
         ListsSelect.setWhatsThis("")
         ListsSelect.setAutoFillBackground(False)
-        ListsSelect.setStyleSheet("QDialog{\n"
-"    background-color:#d7ecf4;\n"
+        ListsSelect.setStyleSheet("QWidget\n"
+"{\n"
+"    background-color:white;\n"
+"    border: 1px solid #d7ecf4;\n"
 "}")
         #ListsSelect.setSizeGripEnabled(False)
         #ListsSelect.setModal(False)
@@ -123,14 +125,20 @@ class Ui_ListsSelect(object):
         self.pushButton.setFlat(False)
         self.pushButton.setObjectName("pushButton")
         self.listWidget = QtWidgets.QListWidget(ListsSelect)
-        self.listWidget.setGeometry(QtCore.QRect(0, 0, 300, 351))
+        self.listWidget.setGeometry(QtCore.QRect(39, 1, 221, 344))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.listWidget.sizePolicy().hasHeightForWidth())
+        self.listWidget.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setFamily("Verdana")
         font.setPointSize(10)
         self.listWidget.setFont(font)
-        self.listWidget.setStyleSheet("\n"
+        self.listWidget.setStyleSheet("QListWidget::item { margin: 0.2em;}\n"
 "QListWidget{\n"
 "    background-color:white;\n"
+"border:none;\n"
 "}\n"
 "QScrollBar:vertical {border: none;\n"
 "background-color: white;}\n"
@@ -140,6 +148,7 @@ class Ui_ListsSelect(object):
 "background-color: white;}\n"
 "QScrollBar::handle:horizontall {\n"
 "border:none;background-color:#acd8e8;}")
+        self.listWidget.setLineWidth(0)
         self.listWidget.setObjectName("listWidget")
         self.closeButton = QtWidgets.QPushButton(ListsSelect)
         self.closeButton.setGeometry(QtCore.QRect(259, 1, 40, 40))
