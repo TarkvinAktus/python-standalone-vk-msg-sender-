@@ -47,7 +47,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget{
-	background-color:#d2374a;
+	background-color:#354052;
 border:none;
 }</string>
   </property>
@@ -83,13 +83,13 @@ border:none;
    <property name="styleSheet">
     <string notr="true">QPushButton {	
 padding-bottom: 0.3em;
-background-color:#b22e3e;
+background-color:#3f4d63;
 color:white;
 border:none;	
 }
 QPushButton:hover {
 padding-bottom: 0.3em;
-background-color:#771b26;
+background-color:#d2374a;
 }
 QPushButton:focus {
 outline:none;

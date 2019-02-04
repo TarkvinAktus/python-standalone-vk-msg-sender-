@@ -48,8 +48,8 @@
   <property name="styleSheet">
    <string notr="true">QWidget
 {
-	background-color:white;
-	border: 1px solid #d7ecf4;
+	background-color:#ebeef
+
 }</string>
   </property>
   <property name="sizeGripEnabled">
@@ -62,9 +62,9 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>345</y>
-     <width>300</width>
-     <height>55</height>
+     <y>350</y>
+     <width>301</width>
+     <height>50</height>
     </rect>
    </property>
    <property name="palette">
@@ -82,9 +82,9 @@
       <colorrole role="Button">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>93</red>
-         <green>151</green>
-         <blue>0</blue>
+         <red>53</red>
+         <green>64</green>
+         <blue>82</blue>
         </color>
        </brush>
       </colorrole>
@@ -118,18 +118,18 @@
       <colorrole role="Base">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>93</red>
-         <green>151</green>
-         <blue>0</blue>
+         <red>53</red>
+         <green>64</green>
+         <blue>82</blue>
         </color>
        </brush>
       </colorrole>
       <colorrole role="Window">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>93</red>
-         <green>151</green>
-         <blue>0</blue>
+         <red>53</red>
+         <green>64</green>
+         <blue>82</blue>
         </color>
        </brush>
       </colorrole>
@@ -147,9 +147,9 @@
       <colorrole role="Button">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>93</red>
-         <green>151</green>
-         <blue>0</blue>
+         <red>53</red>
+         <green>64</green>
+         <blue>82</blue>
         </color>
        </brush>
       </colorrole>
@@ -183,18 +183,18 @@
       <colorrole role="Base">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>93</red>
-         <green>151</green>
-         <blue>0</blue>
+         <red>53</red>
+         <green>64</green>
+         <blue>82</blue>
         </color>
        </brush>
       </colorrole>
       <colorrole role="Window">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>93</red>
-         <green>151</green>
-         <blue>0</blue>
+         <red>53</red>
+         <green>64</green>
+         <blue>82</blue>
         </color>
        </brush>
       </colorrole>
@@ -212,9 +212,9 @@
       <colorrole role="Button">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>93</red>
-         <green>151</green>
-         <blue>0</blue>
+         <red>53</red>
+         <green>64</green>
+         <blue>82</blue>
         </color>
        </brush>
       </colorrole>
@@ -248,18 +248,18 @@
       <colorrole role="Base">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>93</red>
-         <green>151</green>
-         <blue>0</blue>
+         <red>53</red>
+         <green>64</green>
+         <blue>82</blue>
         </color>
        </brush>
       </colorrole>
       <colorrole role="Window">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>93</red>
-         <green>151</green>
-         <blue>0</blue>
+         <red>53</red>
+         <green>64</green>
+         <blue>82</blue>
         </color>
        </brush>
       </colorrole>
@@ -285,12 +285,14 @@
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton{
+	background-color: #354052;
 	color:white;
-	background-color:#5d9700;
 	border:none;
+	border-left: 10px solid #354052
 }
 QPushButton:hover{
-	background-color:#436d00;	
+	background-color:#3f4d63;
+	border-left: 10px solid #1dba9b
 }
 QPushButton:focus{outline: none;}</string>
    </property>
@@ -310,10 +312,10 @@ QPushButton:focus{outline: none;}</string>
   <widget class="QListWidget" name="listWidget">
    <property name="geometry">
     <rect>
-     <x>39</x>
-     <y>1</y>
-     <width>221</width>
-     <height>344</height>
+     <x>10</x>
+     <y>59</y>
+     <width>281</width>
+     <height>281</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -350,10 +352,10 @@ border:none;background-color:#acd8e8;}</string>
   <widget class="QPushButton" name="closeButton">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>1</y>
-     <width>39</width>
-     <height>40</height>
+     <x>250</x>
+     <y>0</y>
+     <width>50</width>
+     <height>50</height>
     </rect>
    </property>
    <property name="font">
@@ -373,7 +375,7 @@ border:none;background-color:#acd8e8;}</string>
    <property name="styleSheet">
     <string notr="true">QPushButton {	
 padding-bottom: 0.4em;
-background-color:white;
+background-color:#1dba9b;
 border:none;	
 }
 QPushButton:hover {
@@ -395,6 +397,31 @@ outline:none;
     <bool>false</bool>
    </property>
   </widget>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>300</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QWidget{
+	background-color:#1dba9b;
+}</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+  </widget>
+  <zorder>pushButton</zorder>
+  <zorder>listWidget</zorder>
+  <zorder>frame</zorder>
+  <zorder>closeButton</zorder>
  </widget>
  <resources/>
  <connections/>

@@ -29,7 +29,7 @@ class Ui_Find(object):
         Find.setWhatsThis("")
         Find.setAutoFillBackground(False)
         Find.setStyleSheet("QWidget{\n"
-"    background-color:#d7ecf4;\n"
+"    background-color:#354052\n"
 "}")
         #Find.setSizeGripEnabled(False)
         #Find.setModal(False)
@@ -39,7 +39,7 @@ class Ui_Find(object):
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(93, 151, 0))
+        brush = QtGui.QBrush(QtGui.QColor(29, 186, 155))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Button, brush)
         brush = QtGui.QBrush(QtGui.QColor(208, 227, 227))
@@ -51,16 +51,16 @@ class Ui_Find(object):
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(93, 151, 0))
+        brush = QtGui.QBrush(QtGui.QColor(29, 186, 155))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Base, brush)
-        brush = QtGui.QBrush(QtGui.QColor(93, 151, 0))
+        brush = QtGui.QBrush(QtGui.QColor(29, 186, 155))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Window, brush)
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(93, 151, 0))
+        brush = QtGui.QBrush(QtGui.QColor(29, 186, 155))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Button, brush)
         brush = QtGui.QBrush(QtGui.QColor(208, 227, 227))
@@ -72,16 +72,16 @@ class Ui_Find(object):
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(93, 151, 0))
+        brush = QtGui.QBrush(QtGui.QColor(29, 186, 155))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Base, brush)
-        brush = QtGui.QBrush(QtGui.QColor(93, 151, 0))
+        brush = QtGui.QBrush(QtGui.QColor(29, 186, 155))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Window, brush)
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(93, 151, 0))
+        brush = QtGui.QBrush(QtGui.QColor(29, 186, 155))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Button, brush)
         brush = QtGui.QBrush(QtGui.QColor(208, 227, 227))
@@ -93,10 +93,10 @@ class Ui_Find(object):
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(93, 151, 0))
+        brush = QtGui.QBrush(QtGui.QColor(29, 186, 155))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Base, brush)
-        brush = QtGui.QBrush(QtGui.QColor(93, 151, 0))
+        brush = QtGui.QBrush(QtGui.QColor(29, 186, 155))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Window, brush)
         self.pushButton.setPalette(palette)
@@ -111,11 +111,11 @@ class Ui_Find(object):
         self.pushButton.setAutoFillBackground(False)
         self.pushButton.setStyleSheet("QPushButton{\n"
 "    color:white;\n"
-"    background-color:#5d9700;\n"
+"    background-color:#1dba9b;\n"
 "    border:none;\n"
 "}\n"
 "QPushButton:hover{\n"
-"    background-color:#436d00;    \n"
+"    background-color:#16967d;    \n"
 "}\n"
 "QPushButton:focus{outline: none;}")
         self.pushButton.setAutoDefault(False)
@@ -143,7 +143,9 @@ class Ui_Find(object):
         font.setBold(False)
         font.setWeight(50)
         self.label.setFont(font)
-        self.label.setStyleSheet("")
+        self.label.setStyleSheet("QWidget{\n"
+"    color: white\n"
+"}")
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         self.closeButton = QtWidgets.QPushButton(Find)
@@ -158,7 +160,8 @@ class Ui_Find(object):
         self.closeButton.setAutoFillBackground(False)
         self.closeButton.setStyleSheet("QPushButton {    \n"
 "padding-bottom: 0.4em;\n"
-"background-color:#d7ecf4;\n"
+"background-color:#354052;\n"
+"color: white;\n"
 "border:none;    \n"
 "}\n"
 "QPushButton:hover {\n"

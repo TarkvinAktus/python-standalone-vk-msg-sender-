@@ -239,14 +239,12 @@ class Main(QtWidgets.QMainWindow, designMain.Ui_MainWindow):
 
         self.sendListWidget.clear()
 
+
+        #USING ErrorMsg to show OK window
         self.done_msg = ErrorMsg(self)  
         self.done_msg.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         self.done_msg.label.setText("Готово")
-        self.done_msg.label.setStyleSheet("QLabel{\n"
-"color:black;\n"
-"}")
-        self.done_msg.setStyleSheet("QWidget{background-color:#d7ecf4;border:none;}")
-        self.done_msg.closeButton.setStyleSheet("QPushButton{background-color:#5d9700;color:white;}QPushButton:hover{background-color:#436d00;}")
+        self.done_msg.closeButton.setStyleSheet("QPushButton{background-color:#3f4d63;color:white;}QPushButton:hover{background-color:#1dba9b;}")
         self.done_msg.show()
 
 
@@ -397,14 +395,11 @@ class Main(QtWidgets.QMainWindow, designMain.Ui_MainWindow):
             j = j + 1
         self.sendListWidget.clear()
 
+        #USING ErrorMsg to show OK window
         self.done_msg = ErrorMsg(self)  
         self.done_msg.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         self.done_msg.label.setText("Готово")
-        self.done_msg.label.setStyleSheet("QLabel{\n"
-"color:black;\n"
-"}")
-        self.done_msg.setStyleSheet("QWidget{background-color:#d7ecf4;border:none;}")
-        self.done_msg.closeButton.setStyleSheet("QPushButton{background-color:#5d9700;color:white;}QPushButton:hover{background-color:#436d00;}")
+        self.done_msg.closeButton.setStyleSheet("QPushButton{background-color:#3f4d63;color:white;}QPushButton:hover{background-color:#1dba9b;}")
         self.done_msg.show()
 
         QtWidgets.QApplication.restoreOverrideCursor()

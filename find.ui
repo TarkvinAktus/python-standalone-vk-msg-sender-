@@ -47,7 +47,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget{
-	background-color:#d7ecf4;
+	background-color:#354052
 }</string>
   </property>
   <property name="sizeGripEnabled">
@@ -80,9 +80,9 @@
       <colorrole role="Button">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>93</red>
-         <green>151</green>
-         <blue>0</blue>
+         <red>29</red>
+         <green>186</green>
+         <blue>155</blue>
         </color>
        </brush>
       </colorrole>
@@ -116,18 +116,18 @@
       <colorrole role="Base">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>93</red>
-         <green>151</green>
-         <blue>0</blue>
+         <red>29</red>
+         <green>186</green>
+         <blue>155</blue>
         </color>
        </brush>
       </colorrole>
       <colorrole role="Window">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>93</red>
-         <green>151</green>
-         <blue>0</blue>
+         <red>29</red>
+         <green>186</green>
+         <blue>155</blue>
         </color>
        </brush>
       </colorrole>
@@ -145,9 +145,9 @@
       <colorrole role="Button">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>93</red>
-         <green>151</green>
-         <blue>0</blue>
+         <red>29</red>
+         <green>186</green>
+         <blue>155</blue>
         </color>
        </brush>
       </colorrole>
@@ -181,18 +181,18 @@
       <colorrole role="Base">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>93</red>
-         <green>151</green>
-         <blue>0</blue>
+         <red>29</red>
+         <green>186</green>
+         <blue>155</blue>
         </color>
        </brush>
       </colorrole>
       <colorrole role="Window">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>93</red>
-         <green>151</green>
-         <blue>0</blue>
+         <red>29</red>
+         <green>186</green>
+         <blue>155</blue>
         </color>
        </brush>
       </colorrole>
@@ -210,9 +210,9 @@
       <colorrole role="Button">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>93</red>
-         <green>151</green>
-         <blue>0</blue>
+         <red>29</red>
+         <green>186</green>
+         <blue>155</blue>
         </color>
        </brush>
       </colorrole>
@@ -246,18 +246,18 @@
       <colorrole role="Base">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>93</red>
-         <green>151</green>
-         <blue>0</blue>
+         <red>29</red>
+         <green>186</green>
+         <blue>155</blue>
         </color>
        </brush>
       </colorrole>
       <colorrole role="Window">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>93</red>
-         <green>151</green>
-         <blue>0</blue>
+         <red>29</red>
+         <green>186</green>
+         <blue>155</blue>
         </color>
        </brush>
       </colorrole>
@@ -284,11 +284,11 @@
    <property name="styleSheet">
     <string notr="true">QPushButton{
 	color:white;
-	background-color:#5d9700;
+	background-color:#1dba9b;
 	border:none;
 }
 QPushButton:hover{
-	background-color:#436d00;	
+	background-color:#16967d;	
 }
 QPushButton:focus{outline: none;}</string>
    </property>
@@ -351,7 +351,9 @@ QPushButton:focus{outline: none;}</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">QWidget{
+	color: white
+}</string>
    </property>
    <property name="text">
     <string>Какие группы ищем?</string>
@@ -386,7 +388,8 @@ QPushButton:focus{outline: none;}</string>
    <property name="styleSheet">
     <string notr="true">QPushButton {	
 padding-bottom: 0.4em;
-background-color:#d7ecf4;
+background-color:#354052;
+color: white;
 border:none;	
 }
 QPushButton:hover {

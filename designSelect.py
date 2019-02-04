@@ -30,18 +30,18 @@ class Ui_ListsSelect(object):
         ListsSelect.setAutoFillBackground(False)
         ListsSelect.setStyleSheet("QWidget\n"
 "{\n"
-"    background-color:white;\n"
-"    border: 1px solid #d7ecf4;\n"
+"    background-color:#ebeef\n"
+"\n"
 "}")
         #ListsSelect.setSizeGripEnabled(False)
         #ListsSelect.setModal(False)
         self.pushButton = QtWidgets.QPushButton(ListsSelect)
-        self.pushButton.setGeometry(QtCore.QRect(0, 345, 300, 55))
+        self.pushButton.setGeometry(QtCore.QRect(0, 350, 301, 50))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(93, 151, 0))
+        brush = QtGui.QBrush(QtGui.QColor(53, 64, 82))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Button, brush)
         brush = QtGui.QBrush(QtGui.QColor(208, 227, 227))
@@ -53,16 +53,16 @@ class Ui_ListsSelect(object):
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(93, 151, 0))
+        brush = QtGui.QBrush(QtGui.QColor(53, 64, 82))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Base, brush)
-        brush = QtGui.QBrush(QtGui.QColor(93, 151, 0))
+        brush = QtGui.QBrush(QtGui.QColor(53, 64, 82))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Window, brush)
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(93, 151, 0))
+        brush = QtGui.QBrush(QtGui.QColor(53, 64, 82))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Button, brush)
         brush = QtGui.QBrush(QtGui.QColor(208, 227, 227))
@@ -74,16 +74,16 @@ class Ui_ListsSelect(object):
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(93, 151, 0))
+        brush = QtGui.QBrush(QtGui.QColor(53, 64, 82))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Base, brush)
-        brush = QtGui.QBrush(QtGui.QColor(93, 151, 0))
+        brush = QtGui.QBrush(QtGui.QColor(53, 64, 82))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Window, brush)
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(93, 151, 0))
+        brush = QtGui.QBrush(QtGui.QColor(53, 64, 82))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Button, brush)
         brush = QtGui.QBrush(QtGui.QColor(208, 227, 227))
@@ -95,10 +95,10 @@ class Ui_ListsSelect(object):
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(93, 151, 0))
+        brush = QtGui.QBrush(QtGui.QColor(53, 64, 82))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Base, brush)
-        brush = QtGui.QBrush(QtGui.QColor(93, 151, 0))
+        brush = QtGui.QBrush(QtGui.QColor(53, 64, 82))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Window, brush)
         self.pushButton.setPalette(palette)
@@ -112,12 +112,14 @@ class Ui_ListsSelect(object):
         self.pushButton.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
         self.pushButton.setAutoFillBackground(False)
         self.pushButton.setStyleSheet("QPushButton{\n"
+"    background-color: #354052;\n"
 "    color:white;\n"
-"    background-color:#5d9700;\n"
 "    border:none;\n"
+"    border-left: 10px solid #354052\n"
 "}\n"
 "QPushButton:hover{\n"
-"    background-color:#436d00;    \n"
+"    background-color:#3f4d63;\n"
+"    border-left: 10px solid #1dba9b\n"
 "}\n"
 "QPushButton:focus{outline: none;}")
         self.pushButton.setAutoDefault(False)
@@ -125,7 +127,7 @@ class Ui_ListsSelect(object):
         self.pushButton.setFlat(False)
         self.pushButton.setObjectName("pushButton")
         self.listWidget = QtWidgets.QListWidget(ListsSelect)
-        self.listWidget.setGeometry(QtCore.QRect(39, 1, 221, 344))
+        self.listWidget.setGeometry(QtCore.QRect(10, 59, 281, 281))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -151,7 +153,7 @@ class Ui_ListsSelect(object):
         self.listWidget.setLineWidth(0)
         self.listWidget.setObjectName("listWidget")
         self.closeButton = QtWidgets.QPushButton(ListsSelect)
-        self.closeButton.setGeometry(QtCore.QRect(260, 1, 39, 40))
+        self.closeButton.setGeometry(QtCore.QRect(250, 0, 50, 50))
         font = QtGui.QFont()
         font.setFamily("Verdana")
         font.setPointSize(16)
@@ -162,7 +164,7 @@ class Ui_ListsSelect(object):
         self.closeButton.setAutoFillBackground(False)
         self.closeButton.setStyleSheet("QPushButton {    \n"
 "padding-bottom: 0.4em;\n"
-"background-color:white;\n"
+"background-color:#1dba9b;\n"
 "border:none;    \n"
 "}\n"
 "QPushButton:hover {\n"
@@ -176,6 +178,18 @@ class Ui_ListsSelect(object):
         self.closeButton.setAutoDefault(False)
         self.closeButton.setDefault(False)
         self.closeButton.setObjectName("closeButton")
+        self.frame = QtWidgets.QFrame(ListsSelect)
+        self.frame.setGeometry(QtCore.QRect(0, 0, 300, 50))
+        self.frame.setStyleSheet("QWidget{\n"
+"    background-color:#1dba9b;\n"
+"}")
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.pushButton.raise_()
+        self.listWidget.raise_()
+        self.frame.raise_()
+        self.closeButton.raise_()
 
         self.retranslateUi(ListsSelect)
         QtCore.QMetaObject.connectSlotsByName(ListsSelect)

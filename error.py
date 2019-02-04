@@ -29,7 +29,7 @@ class Ui_Error(object):
         Error.setWhatsThis("")
         Error.setAutoFillBackground(False)
         Error.setStyleSheet("QWidget{\n"
-"    background-color:#d2374a;\n"
+"    background-color:#354052;\n"
 "border:none;\n"
 "}")
         #Error.setSizeGripEnabled(False)
@@ -46,13 +46,13 @@ class Ui_Error(object):
         self.closeButton.setAutoFillBackground(False)
         self.closeButton.setStyleSheet("QPushButton {    \n"
 "padding-bottom: 0.3em;\n"
-"background-color:#b22e3e;\n"
+"background-color:#3f4d63;\n"
 "color:white;\n"
 "border:none;    \n"
 "}\n"
 "QPushButton:hover {\n"
 "padding-bottom: 0.3em;\n"
-"background-color:#771b26;\n"
+"background-color:#d2374a;\n"
 "}\n"
 "QPushButton:focus {\n"
 "outline:none;\n"
@@ -81,5 +81,4 @@ class Ui_Error(object):
         _translate = QtCore.QCoreApplication.translate
         self.closeButton.setText(_translate("Error", "OK"))
         self.label.setText(_translate("Error", "Ошибка ввода"))
-
 
