@@ -428,7 +428,7 @@ outline:none;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../../Desktop/70px.png</pixmap>
+      <pixmap resource="rs.qrc">:/newPrefix/70px.png</pixmap>
      </property>
     </widget>
     <zorder>sendButton</zorder>
@@ -516,6 +516,8 @@ outline:none;
    <zorder>closeButton</zorder>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="rs.qrc"/>
+ </resources>
  <connections/>
 </ui>

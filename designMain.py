@@ -231,7 +231,7 @@ class Ui_MainWindow(object):
         self.label = QtWidgets.QLabel(self.frame)
         self.label.setGeometry(QtCore.QRect(139, 20, 47, 70))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("../../Desktop/70px.png"))
+        self.label.setPixmap(QtGui.QPixmap(":/newPrefix/70px.png"))
         self.label.setObjectName("label")
         self.sendButton.raise_()
         self.label.raise_()
@@ -297,3 +297,4 @@ class Ui_MainWindow(object):
         self.closeButton.setText(_translate("MainWindow", "x"))
         self.rollButton.setText(_translate("MainWindow", "-"))
 
+import rs_rc
