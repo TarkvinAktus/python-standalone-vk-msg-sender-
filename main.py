@@ -1,5 +1,11 @@
-import sys  # sys нужен для передачи argv в QApplication
+import sys  # sys using for argv в QApplication
 import os
+import vk_api
+import random
+import time
+import threading
+import asyncio
+import json
 from PyQt5 import QtCore, QtWidgets, QtGui
 
 # UI files
@@ -9,16 +15,16 @@ import error
 import designSelect
 import d_find
 
+#Color scheme
+#354052 dark gray
+#3f4d63 selected dark gray 
+#ebeef light gray 
+#1dba9b green 
+#16967d selected green 
+#d1d2d7 gray UI 
+#d2374a red
 
-import vk_api
-import random
-import time
-import threading
-import asyncio
-import json
-
-
-
+#Lists of chats 
 class ListsSelect(QtWidgets.QMainWindow, designSelect.Ui_ListsSelect):
 
     def __init__(self, mainform ,parent=None):
@@ -33,7 +39,9 @@ class ListsSelect(QtWidgets.QMainWindow, designSelect.Ui_ListsSelect):
         self.numOfLists = 0
 
         for b_list in range(len(allLists)):
+            #find all json file except config file
             if allLists[b_list].find(".json") != -1 and allLists[b_list].find("vk_config.v2") == -1:
+                #remove '.json' from name
                 self.myList = allLists[b_list].replace(".json","")
                 self.listWidget.addItem(self.myList)
                 self.numOfLists = self.numOfLists + 1
@@ -44,6 +52,7 @@ class ListsSelect(QtWidgets.QMainWindow, designSelect.Ui_ListsSelect):
         with open(add_text, "r") as read_file:
             data = json.load(read_file)
 
+        #load chats info from json
         for chat in range(len(data)):
             bufferListItem = QtWidgets.QListWidgetItem()    
             bufferListItem.setText(data[chat][0])
@@ -52,7 +61,7 @@ class ListsSelect(QtWidgets.QMainWindow, designSelect.Ui_ListsSelect):
 
         self.close()
 
- 
+    #mouse drag enable block
     def mousePressEvent(self, event):
         self.offset = event.pos()
     def mouseMoveEvent(self, event):
@@ -68,7 +77,8 @@ class ErrorMsg(QtWidgets.QMainWindow, error.Ui_Error):
         super(ErrorMsg, self).__init__(parent)
         self.setupUi(self)
         self.closeButton.clicked.connect(self.close)
- 
+    
+    #mouse drag enable block
     def mousePressEvent(self, event):
         self.offset = event.pos()
     def mouseMoveEvent(self, event):
@@ -92,10 +102,12 @@ class Find(QtWidgets.QMainWindow, d_find.Ui_Find):
     def find(self):
         self.mainform.req = self.lineEdit.text()
         self.close()
+        #using additional thread to exclude frozen UI because of vk_api slow methods
         t = threading.Thread(target=self.mainform.findGrp())
         t.daemon = True
         t.start()
     
+    #mouse drag enable block
     def mousePressEvent(self, event):
         self.offset = event.pos()
     def mouseMoveEvent(self, event):
@@ -114,6 +126,7 @@ class Login(QtWidgets.QMainWindow, designLogin.Ui_Login):
         self.pushButton.clicked.connect(self.chkLogin)
         self.closeButton.clicked.connect(self.close)
     
+    #mouse drag enable block
     def mousePressEvent(self, event):
         self.offset = event.pos()
     def mouseMoveEvent(self, event):
@@ -183,8 +196,7 @@ class Main(QtWidgets.QMainWindow, designMain.Ui_MainWindow):
         self.sendListWidget.itemDoubleClicked.connect(self.delitem)
         #self.textEdit.textChanged.connect(self.textToUTF8)
 
-        
-
+        #using additional thread to exclude frozen UI because of vk_api slow methods
         t = threading.Thread(target=self.firstfindGrp)
         t.daemon = True
         t.start()
@@ -254,6 +266,7 @@ class Main(QtWidgets.QMainWindow, designMain.Ui_MainWindow):
         self.findWidget.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         self.findWidget.show()
 
+    #mouse drag enable block
     def mousePressEvent(self, event):
         self.offset = event.pos()
     def mouseMoveEvent(self, event):
@@ -361,7 +374,7 @@ class Main(QtWidgets.QMainWindow, designMain.Ui_MainWindow):
         vk_get_api = self.vk.get_api() 
 
         text = self.textEdit.toHtml()
-        #print(text)
+        #here i'm still working for emoji support
         text = text.replace('<img src="https://vk.com/emoji/e/f09f988e.png" />','&#128526;')
         text = text.replace('<img src="https://vk.com/emoji/e/f09f91b9.png" />','👹')
         text = text.replace('<img src="https://vk.com/emoji/e/f09f91ba.png" />','&#128122;')
@@ -378,6 +391,7 @@ class Main(QtWidgets.QMainWindow, designMain.Ui_MainWindow):
         j = 0
 
         while j < numOfConv:
+            #Not more than 3 api calls per second
             time.sleep(.350)
             try:
                 id = 2000000000+int(self.sendListWidget.item(j).statusTip())
